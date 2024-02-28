@@ -1,0 +1,7 @@
+set(cv2_img_SETUP_PY_SETUP_MODULE "distutils.core")
+set(cv2_img_SETUP_PY_VERSION "0.0.0")
+set(cv2_img_SETUP_PY_SCRIPTS "")
+set(cv2_img_SETUP_PY_PACKAGES "cv2_img")
+set(cv2_img_SETUP_PY_PACKAGE_DIRS "src/cv2_img")
+set(cv2_img_SETUP_PY_MODULES "")
+set(cv2_img_SETUP_PY_MODULE_DIRS "")

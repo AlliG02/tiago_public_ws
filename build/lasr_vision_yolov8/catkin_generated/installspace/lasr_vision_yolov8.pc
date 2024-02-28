@@ -1,0 +1,8 @@
+prefix=/home/k21066336/tiago_public_ws/install
+
+Name: lasr_vision_yolov8
+Description: Description of lasr_vision_yolov8
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

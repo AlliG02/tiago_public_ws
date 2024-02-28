@@ -1,0 +1,1 @@
+/home/k21066336/tiago_public_ws/devel/.private/cv2_img/share/cv2_img/cmake/cv2_imgConfig.cmake

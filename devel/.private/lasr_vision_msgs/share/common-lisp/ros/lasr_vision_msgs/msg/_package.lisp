@@ -1,0 +1,17 @@
+(cl:defpackage lasr_vision_msgs-msg
+  (:use )
+  (:export
+   "<BODYPIXMASK>"
+   "BODYPIXMASK"
+   "<BODYPIXMASKREQUEST>"
+   "BODYPIXMASKREQUEST"
+   "<BODYPIXPOSE>"
+   "BODYPIXPOSE"
+   "<COLOURPREDICTION>"
+   "COLOURPREDICTION"
+   "<DETECTION>"
+   "DETECTION"
+   "<FEATUREWITHCOLOUR>"
+   "FEATUREWITHCOLOUR"
+  ))
+

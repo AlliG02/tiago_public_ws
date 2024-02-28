@@ -1,0 +1,6 @@
+<launch>
+  <!-- Start your ROS nodes -->
+  <node name="move_tiago_forward" pkg="move_tiago" type="move_tiago_forward.py" respawn="true" output="screen">
+  </node>
+
+</launch>

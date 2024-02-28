@@ -1,0 +1,8 @@
+prefix=/home/k21066336/tiago_public_ws/devel/.private/cv2_img
+
+Name: cv2_img
+Description: Description of cv2_img
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

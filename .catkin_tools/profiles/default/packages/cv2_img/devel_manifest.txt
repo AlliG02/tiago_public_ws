@@ -1,0 +1,6 @@
+cv2_img
+/home/k21066336/tiago_public_ws/devel/.private/cv2_img/cmake.lock /home/k21066336/tiago_public_ws/devel/./cmake.lock
+/home/k21066336/tiago_public_ws/devel/.private/cv2_img/lib/python3/dist-packages/cv2_img/__init__.py /home/k21066336/tiago_public_ws/devel/lib/python3/dist-packages/cv2_img/__init__.py
+/home/k21066336/tiago_public_ws/devel/.private/cv2_img/lib/pkgconfig/cv2_img.pc /home/k21066336/tiago_public_ws/devel/lib/pkgconfig/cv2_img.pc
+/home/k21066336/tiago_public_ws/devel/.private/cv2_img/share/cv2_img/cmake/cv2_imgConfig-version.cmake /home/k21066336/tiago_public_ws/devel/share/cv2_img/cmake/cv2_imgConfig-version.cmake
+/home/k21066336/tiago_public_ws/devel/.private/cv2_img/share/cv2_img/cmake/cv2_imgConfig.cmake /home/k21066336/tiago_public_ws/devel/share/cv2_img/cmake/cv2_imgConfig.cmake

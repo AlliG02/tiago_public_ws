@@ -1,0 +1,21 @@
+[  0%] Built target sensor_msgs_generate_messages_py
+[  0%] Built target _lasr_vision_msgs_generate_messages_check_deps_Detection
+[  0%] Built target _lasr_vision_msgs_generate_messages_check_deps_YoloDetection
+[  0%] Built target _lasr_vision_msgs_generate_messages_check_deps_BodyPixMaskRequest
+[  0%] Built target _lasr_vision_msgs_generate_messages_check_deps_Recognise
+[  0%] Built target _lasr_vision_msgs_generate_messages_check_deps_TorchFaceFeatureDetection
+[  0%] Built target _lasr_vision_msgs_generate_messages_check_deps_BodyPixDetection
+[  0%] Built target _lasr_vision_msgs_generate_messages_check_deps_BodyPixMask
+[  0%] Built target sensor_msgs_generate_messages_lisp
+[  0%] Built target _lasr_vision_msgs_generate_messages_check_deps_BodyPixPose
+[  0%] Built target sensor_msgs_generate_messages_nodejs
+[  0%] Built target sensor_msgs_generate_messages_eus
+[  0%] Built target sensor_msgs_generate_messages_cpp
+[  0%] Built target _lasr_vision_msgs_generate_messages_check_deps_FeatureWithColour
+[  0%] Built target _lasr_vision_msgs_generate_messages_check_deps_ColourPrediction
+[ 96%] Built target lasr_vision_msgs_generate_messages_nodejs
+[ 96%] Built target lasr_vision_msgs_generate_messages_eus
+[100%] Built target lasr_vision_msgs_generate_messages_lisp
+[100%] Built target lasr_vision_msgs_generate_messages_cpp
+[100%] Built target lasr_vision_msgs_generate_messages_py
+[100%] Built target lasr_vision_msgs_generate_messages

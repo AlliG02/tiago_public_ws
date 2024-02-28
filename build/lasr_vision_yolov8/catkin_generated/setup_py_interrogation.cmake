@@ -1,0 +1,7 @@
+set(lasr_vision_yolov8_SETUP_PY_SETUP_MODULE "distutils.core")
+set(lasr_vision_yolov8_SETUP_PY_VERSION "0.0.0")
+set(lasr_vision_yolov8_SETUP_PY_SCRIPTS "")
+set(lasr_vision_yolov8_SETUP_PY_PACKAGES "lasr_vision_yolov8")
+set(lasr_vision_yolov8_SETUP_PY_PACKAGE_DIRS "src/lasr_vision_yolov8")
+set(lasr_vision_yolov8_SETUP_PY_MODULES "")
+set(lasr_vision_yolov8_SETUP_PY_MODULE_DIRS "")

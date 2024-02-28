@@ -1,0 +1,16 @@
+<launch>
+  <!-- Load Gazebo with Tiago world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find tiago_gazebo)/worlds/tiago.world"/>
+  </include>
+
+  <!-- Spawn Tiago robot into Gazebo -->
+  <node name="spawn_tiago" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-urdf -model tiago -param /tiago/robot_description"/>
+
+  <!-- Start the simulation with public_sim and end_effector arguments -->
+  <node name="tiago_gazebo_node" pkg="tiago_gazebo" type="tiago_gazebo_node" respawn="false" output="screen">
+    <param name="public_sim" value="true"/>
+    <param name="end_effector" value="pal-gripper"/>
+  </node>
+</launch>
