@@ -1,0 +1,15 @@
+<!-- my_tiago_navigation.launch -->
+<launch>
+
+    <!-- Set parameters -->
+    <arg name="public_sim" default="true"/>
+    <arg name="world" default="simple_office"/>
+
+    <!-- Launch tiago_navigation.launch -->
+    <include file="$(find tiago_2dnav_gazebo)/launch/tiago_navigation.launch">
+        <arg name="public_sim" value="$(arg public_sim)"/>
+        <arg name="world" value="$(arg world)"/>
+    </include>
+
+   <node pkg="lasr_vision_yolov8" name="service" type="service" output="screen"/>
+</launch>
