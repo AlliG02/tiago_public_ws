@@ -1,0 +1,1 @@
+/home/k21066336/tiago_public_ws/devel/.private/lasr_object_detection_yolo/share/lasr_object_detection_yolo/cmake/lasr_object_detection_yolo-msg-extras.cmake

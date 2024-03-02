@@ -1,0 +1,1 @@
+/home/k21066336/tiago_public_ws/devel/.private/aruco_service/share/aruco_service/cmake/aruco_serviceConfig-version.cmake

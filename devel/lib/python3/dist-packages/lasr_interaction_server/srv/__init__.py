@@ -1,0 +1,1 @@
+/home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/lib/python3/dist-packages/lasr_interaction_server/srv/__init__.py

@@ -1,0 +1,1 @@
+/home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/share/lasr_interaction_server/cmake/lasr_interaction_server-msg-paths.cmake

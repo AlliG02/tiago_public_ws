@@ -1,0 +1,8 @@
+prefix=/home/k21066336/tiago_public_ws/install
+
+Name: lasr_navigate_to_known_person
+Description: Description of lasr_navigate_to_known_person
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

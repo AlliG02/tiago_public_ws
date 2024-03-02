@@ -1,0 +1,8 @@
+prefix=/home/k21066336/tiago_public_ws/devel/.private/pcl_segmentation
+
+Name: pcl_segmentation
+Description: Description of pcl_segmentation
+Version: 0.0.0
+Cflags: -I/home/k21066336/tiago_public_ws/devel/.private/pcl_segmentation/include
+Libs: -L${prefix}/lib 
+Requires: 

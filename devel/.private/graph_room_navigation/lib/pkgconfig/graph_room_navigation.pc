@@ -1,0 +1,8 @@
+prefix=/home/k21066336/tiago_public_ws/devel/.private/graph_room_navigation
+
+Name: graph_room_navigation
+Description: Description of graph_room_navigation
+Version: 0.0.0
+Cflags: -I/home/k21066336/tiago_public_ws/devel/.private/graph_room_navigation/include
+Libs: -L${prefix}/lib 
+Requires: 

@@ -1,8 +1,0 @@
-Unlinking: /home/k21066336/tiago_public_ws/devel/share/lasr_vision_yolov8/cmake/lasr_vision_yolov8Config-version.cmake
-Unlinking: /home/k21066336/tiago_public_ws/devel/share/lasr_vision_yolov8/cmake/lasr_vision_yolov8Config.cmake
-Unlinking: /home/k21066336/tiago_public_ws/devel/lib/python3/dist-packages/lasr_vision_yolov8/__init__.py
-Unlinking: /home/k21066336/tiago_public_ws/devel/lib/lasr_vision_yolov8/cmake.lock
-Unlinking: /home/k21066336/tiago_public_ws/devel/lib/lasr_vision_yolov8/relay
-Unlinking: /home/k21066336/tiago_public_ws/devel/lib/lasr_vision_yolov8/construct_mask
-Unlinking: /home/k21066336/tiago_public_ws/devel/lib/lasr_vision_yolov8/service
-Unlinking: /home/k21066336/tiago_public_ws/devel/lib/pkgconfig/lasr_vision_yolov8.pc

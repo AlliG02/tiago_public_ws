@@ -32,9 +32,8 @@ Not searching for unused variables given on the command line.
 [36m--[0m Using Python nosetests: /usr/bin/nosetests3
 [36m--[0m catkin 0.8.10
 [36m--[0m BUILD_SHARED_LIBS is on
-[36m--[0m Installing devel-space wrapper /home/k21066336/tiago_public_ws/src/lasr_vision_yolov8/nodes/service to /home/k21066336/tiago_public_ws/devel/.private/lasr_vision_yolov8/lib/lasr_vision_yolov8
-[36m--[0m Installing devel-space wrapper /home/k21066336/tiago_public_ws/src/lasr_vision_yolov8/examples/relay to /home/k21066336/tiago_public_ws/devel/.private/lasr_vision_yolov8/lib/lasr_vision_yolov8
-[36m--[0m Installing devel-space wrapper /home/k21066336/tiago_public_ws/src/lasr_vision_yolov8/examples/construct_mask to /home/k21066336/tiago_public_ws/devel/.private/lasr_vision_yolov8/lib/lasr_vision_yolov8
+[36m--[0m Using system site packages
+[36m--[0m Using virtualenv to run Python nosetests:
 [36m--[0m Configuring done
 [36m--[0m Generating done
 [36m--[0m Build files have been written to: /home/k21066336/tiago_public_ws/build/lasr_vision_yolov8

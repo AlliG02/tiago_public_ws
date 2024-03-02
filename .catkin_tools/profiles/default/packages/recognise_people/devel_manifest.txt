@@ -1,0 +1,22 @@
+legacy/people_detection/recognise_people
+/home/k21066336/tiago_public_ws/devel/.private/recognise_people/cmake.lock /home/k21066336/tiago_public_ws/devel/./cmake.lock
+/home/k21066336/tiago_public_ws/devel/.private/recognise_people/lib/pkgconfig/recognise_people.pc /home/k21066336/tiago_public_ws/devel/lib/pkgconfig/recognise_people.pc
+/home/k21066336/tiago_public_ws/devel/.private/recognise_people/lib/python3/dist-packages/recognise_people/__init__.py /home/k21066336/tiago_public_ws/devel/lib/python3/dist-packages/recognise_people/__init__.py
+/home/k21066336/tiago_public_ws/devel/.private/recognise_people/lib/python3/dist-packages/recognise_people/srv/__init__.py /home/k21066336/tiago_public_ws/devel/lib/python3/dist-packages/recognise_people/srv/__init__.py
+/home/k21066336/tiago_public_ws/devel/.private/recognise_people/lib/python3/dist-packages/recognise_people/srv/_RecognisePeople.py /home/k21066336/tiago_public_ws/devel/lib/python3/dist-packages/recognise_people/srv/_RecognisePeople.py
+/home/k21066336/tiago_public_ws/devel/.private/recognise_people/share/recognise_people/cmake/recognise_peopleConfig.cmake /home/k21066336/tiago_public_ws/devel/share/recognise_people/cmake/recognise_peopleConfig.cmake
+/home/k21066336/tiago_public_ws/devel/.private/recognise_people/share/recognise_people/cmake/recognise_peopleConfig-version.cmake /home/k21066336/tiago_public_ws/devel/share/recognise_people/cmake/recognise_peopleConfig-version.cmake
+/home/k21066336/tiago_public_ws/devel/.private/recognise_people/share/recognise_people/cmake/recognise_people-msg-paths.cmake /home/k21066336/tiago_public_ws/devel/share/recognise_people/cmake/recognise_people-msg-paths.cmake
+/home/k21066336/tiago_public_ws/devel/.private/recognise_people/share/recognise_people/cmake/recognise_people-msg-extras.cmake /home/k21066336/tiago_public_ws/devel/share/recognise_people/cmake/recognise_people-msg-extras.cmake
+/home/k21066336/tiago_public_ws/devel/.private/recognise_people/share/roseus/ros/recognise_people/manifest.l /home/k21066336/tiago_public_ws/devel/share/roseus/ros/recognise_people/manifest.l
+/home/k21066336/tiago_public_ws/devel/.private/recognise_people/share/roseus/ros/recognise_people/srv/RecognisePeople.l /home/k21066336/tiago_public_ws/devel/share/roseus/ros/recognise_people/srv/RecognisePeople.l
+/home/k21066336/tiago_public_ws/devel/.private/recognise_people/share/common-lisp/ros/recognise_people/srv/_package.lisp /home/k21066336/tiago_public_ws/devel/share/common-lisp/ros/recognise_people/srv/_package.lisp
+/home/k21066336/tiago_public_ws/devel/.private/recognise_people/share/common-lisp/ros/recognise_people/srv/recognise_people-srv.asd /home/k21066336/tiago_public_ws/devel/share/common-lisp/ros/recognise_people/srv/recognise_people-srv.asd
+/home/k21066336/tiago_public_ws/devel/.private/recognise_people/share/common-lisp/ros/recognise_people/srv/_package_RecognisePeople.lisp /home/k21066336/tiago_public_ws/devel/share/common-lisp/ros/recognise_people/srv/_package_RecognisePeople.lisp
+/home/k21066336/tiago_public_ws/devel/.private/recognise_people/share/common-lisp/ros/recognise_people/srv/RecognisePeople.lisp /home/k21066336/tiago_public_ws/devel/share/common-lisp/ros/recognise_people/srv/RecognisePeople.lisp
+/home/k21066336/tiago_public_ws/devel/.private/recognise_people/share/gennodejs/ros/recognise_people/_index.js /home/k21066336/tiago_public_ws/devel/share/gennodejs/ros/recognise_people/_index.js
+/home/k21066336/tiago_public_ws/devel/.private/recognise_people/share/gennodejs/ros/recognise_people/srv/RecognisePeople.js /home/k21066336/tiago_public_ws/devel/share/gennodejs/ros/recognise_people/srv/RecognisePeople.js
+/home/k21066336/tiago_public_ws/devel/.private/recognise_people/share/gennodejs/ros/recognise_people/srv/_index.js /home/k21066336/tiago_public_ws/devel/share/gennodejs/ros/recognise_people/srv/_index.js
+/home/k21066336/tiago_public_ws/devel/.private/recognise_people/include/recognise_people/RecognisePeopleResponse.h /home/k21066336/tiago_public_ws/devel/include/recognise_people/RecognisePeopleResponse.h
+/home/k21066336/tiago_public_ws/devel/.private/recognise_people/include/recognise_people/RecognisePeopleRequest.h /home/k21066336/tiago_public_ws/devel/include/recognise_people/RecognisePeopleRequest.h
+/home/k21066336/tiago_public_ws/devel/.private/recognise_people/include/recognise_people/RecognisePeople.h /home/k21066336/tiago_public_ws/devel/include/recognise_people/RecognisePeople.h

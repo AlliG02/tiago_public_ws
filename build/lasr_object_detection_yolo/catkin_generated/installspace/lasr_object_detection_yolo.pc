@@ -1,0 +1,8 @@
+prefix=/home/k21066336/tiago_public_ws/install
+
+Name: lasr_object_detection_yolo
+Description: Description of lasr_object_detection_yolo
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: 

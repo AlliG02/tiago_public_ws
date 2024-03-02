@@ -1,0 +1,1 @@
+/home/k21066336/tiago_public_ws/devel/.private/find_person_and_ask_open_door/share/find_person_and_ask_open_door/cmake/find_person_and_ask_open_doorConfig.cmake

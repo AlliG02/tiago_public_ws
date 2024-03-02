@@ -1,0 +1,7 @@
+set(create_dataset_SETUP_PY_SETUP_MODULE "distutils.core")
+set(create_dataset_SETUP_PY_VERSION "0.0.0")
+set(create_dataset_SETUP_PY_SCRIPTS "")
+set(create_dataset_SETUP_PY_PACKAGES "create_dataset")
+set(create_dataset_SETUP_PY_PACKAGE_DIRS "src/create_dataset")
+set(create_dataset_SETUP_PY_MODULES "")
+set(create_dataset_SETUP_PY_MODULE_DIRS "")

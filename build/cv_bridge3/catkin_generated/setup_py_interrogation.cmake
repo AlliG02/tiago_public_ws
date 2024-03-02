@@ -1,0 +1,7 @@
+set(cv_bridge3_SETUP_PY_SETUP_MODULE "distutils.core")
+set(cv_bridge3_SETUP_PY_VERSION "0.0.0")
+set(cv_bridge3_SETUP_PY_SCRIPTS "")
+set(cv_bridge3_SETUP_PY_PACKAGES "cv_bridge3")
+set(cv_bridge3_SETUP_PY_PACKAGE_DIRS "src/cv_bridge3")
+set(cv_bridge3_SETUP_PY_MODULES "")
+set(cv_bridge3_SETUP_PY_MODULE_DIRS "")

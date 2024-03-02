@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+if [ "TRUE" = "TRUE" ]; then
+	exec /home/k21066336/tiago_public_ws/install/share/lasr_shapely/venv/bin/python - "$@" <<- EOF
+	import re
+	import sys
+
+	from setproctitle import setproctitle
+
+	program_path = "/home/k21066336/tiago_public_ws/install/share/lasr_shapely/catkin_virtualenv_scripts/service"
+	setproctitle(' '.join([program_path] + sys.argv[1:]))
+	exec(open(program_path).read())
+	EOF
+else
+	exec /home/k21066336/tiago_public_ws/install/share/lasr_shapely/venv/bin/python /home/k21066336/tiago_public_ws/install/share/lasr_shapely/catkin_virtualenv_scripts/service "$@"
+fi

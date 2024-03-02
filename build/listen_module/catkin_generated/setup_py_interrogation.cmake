@@ -1,0 +1,7 @@
+set(listen_module_SETUP_PY_SETUP_MODULE "distutils.core")
+set(listen_module_SETUP_PY_VERSION "0.0.0")
+set(listen_module_SETUP_PY_SCRIPTS "")
+set(listen_module_SETUP_PY_PACKAGES "listen_module")
+set(listen_module_SETUP_PY_PACKAGE_DIRS "src/listen_module")
+set(listen_module_SETUP_PY_MODULES "")
+set(listen_module_SETUP_PY_MODULE_DIRS "")

@@ -1,0 +1,7 @@
+set(interaction_module_SETUP_PY_SETUP_MODULE "distutils.core")
+set(interaction_module_SETUP_PY_VERSION "0.0.0")
+set(interaction_module_SETUP_PY_SCRIPTS "")
+set(interaction_module_SETUP_PY_PACKAGES "interaction_module")
+set(interaction_module_SETUP_PY_PACKAGE_DIRS "src/interaction_module")
+set(interaction_module_SETUP_PY_MODULES "")
+set(interaction_module_SETUP_PY_MODULE_DIRS "")

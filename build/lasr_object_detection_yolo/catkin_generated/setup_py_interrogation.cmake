@@ -1,0 +1,7 @@
+set(lasr_object_detection_yolo_SETUP_PY_SETUP_MODULE "distutils.core")
+set(lasr_object_detection_yolo_SETUP_PY_VERSION "0.0.0")
+set(lasr_object_detection_yolo_SETUP_PY_SCRIPTS "")
+set(lasr_object_detection_yolo_SETUP_PY_PACKAGES "lasr_object_detection_yolo")
+set(lasr_object_detection_yolo_SETUP_PY_PACKAGE_DIRS "src/lasr_object_detection_yolo")
+set(lasr_object_detection_yolo_SETUP_PY_MODULES "")
+set(lasr_object_detection_yolo_SETUP_PY_MODULE_DIRS "")

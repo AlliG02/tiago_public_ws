@@ -1,0 +1,8 @@
+prefix=/home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server
+
+Name: lasr_interaction_server
+Description: Description of lasr_interaction_server
+Version: 0.0.0
+Cflags: -I/home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/include
+Libs: -L${prefix}/lib 
+Requires: 

@@ -1,0 +1,1 @@
+/home/k21066336/tiago_public_ws/devel/.private/interaction_module/share/common-lisp/ros/interaction_module/srv/AudioAndTextInteraction.lisp

@@ -1,0 +1,8 @@
+prefix=/home/k21066336/tiago_public_ws/install
+
+Name: cv_bridge3
+Description: Description of cv_bridge3
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

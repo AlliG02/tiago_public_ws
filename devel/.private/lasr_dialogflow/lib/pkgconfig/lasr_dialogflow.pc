@@ -1,0 +1,8 @@
+prefix=/home/k21066336/tiago_public_ws/devel/.private/lasr_dialogflow
+
+Name: lasr_dialogflow
+Description: Description of lasr_dialogflow
+Version: 0.0.0
+Cflags: -I/home/k21066336/tiago_public_ws/devel/.private/lasr_dialogflow/include
+Libs: -L${prefix}/lib 
+Requires: 

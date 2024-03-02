@@ -1,0 +1,1 @@
+/home/k21066336/tiago_public_ws/devel/.private/aruco_service/lib/python3/dist-packages/aruco_service/srv/_PublishTablePoints.py

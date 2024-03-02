@@ -1,0 +1,7 @@
+set(find_person_and_ask_open_door_SETUP_PY_SETUP_MODULE "distutils.core")
+set(find_person_and_ask_open_door_SETUP_PY_VERSION "0.0.0")
+set(find_person_and_ask_open_door_SETUP_PY_SCRIPTS "")
+set(find_person_and_ask_open_door_SETUP_PY_PACKAGES "find_person_and_ask_open_door")
+set(find_person_and_ask_open_door_SETUP_PY_PACKAGE_DIRS "src/find_person_and_ask_open_door")
+set(find_person_and_ask_open_door_SETUP_PY_MODULES "")
+set(find_person_and_ask_open_door_SETUP_PY_MODULE_DIRS "")

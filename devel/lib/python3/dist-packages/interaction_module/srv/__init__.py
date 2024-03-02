@@ -1,0 +1,1 @@
+/home/k21066336/tiago_public_ws/devel/.private/interaction_module/lib/python3/dist-packages/interaction_module/srv/__init__.py

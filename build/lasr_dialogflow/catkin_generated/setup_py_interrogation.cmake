@@ -1,0 +1,7 @@
+set(lasr_dialogflow_SETUP_PY_SETUP_MODULE "distutils.core")
+set(lasr_dialogflow_SETUP_PY_VERSION "0.0.0")
+set(lasr_dialogflow_SETUP_PY_SCRIPTS "")
+set(lasr_dialogflow_SETUP_PY_PACKAGES "lasr_dialogflow")
+set(lasr_dialogflow_SETUP_PY_PACKAGE_DIRS "src/lasr_dialogflow")
+set(lasr_dialogflow_SETUP_PY_MODULES "")
+set(lasr_dialogflow_SETUP_PY_MODULE_DIRS "")

@@ -1,0 +1,1 @@
+/home/k21066336/tiago_public_ws/devel/.private/face_detection/share/face_detection/cmake/face_detectionConfig.cmake

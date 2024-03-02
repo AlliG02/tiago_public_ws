@@ -1,0 +1,1 @@
+/home/k21066336/tiago_public_ws/devel/.private/lasr_shapely/share/roseus/ros/lasr_shapely/manifest.l

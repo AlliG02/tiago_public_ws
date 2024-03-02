@@ -1,0 +1,1 @@
+/home/k21066336/tiago_public_ws/devel/.private/lasr_object_detection_yolo/share/gennodejs/ros/lasr_object_detection_yolo/srv/_index.js

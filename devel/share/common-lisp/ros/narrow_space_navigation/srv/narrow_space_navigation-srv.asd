@@ -1,0 +1,1 @@
+/home/k21066336/tiago_public_ws/devel/.private/narrow_space_navigation/share/common-lisp/ros/narrow_space_navigation/srv/narrow_space_navigation-srv.asd

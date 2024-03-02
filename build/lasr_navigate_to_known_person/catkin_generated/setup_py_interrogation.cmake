@@ -1,0 +1,7 @@
+set(lasr_navigate_to_known_person_SETUP_PY_SETUP_MODULE "distutils.core")
+set(lasr_navigate_to_known_person_SETUP_PY_VERSION "0.0.0")
+set(lasr_navigate_to_known_person_SETUP_PY_SCRIPTS "")
+set(lasr_navigate_to_known_person_SETUP_PY_PACKAGES "lasr_navigate_to_known_person")
+set(lasr_navigate_to_known_person_SETUP_PY_PACKAGE_DIRS "src/lasr_navigate_to_known_person")
+set(lasr_navigate_to_known_person_SETUP_PY_MODULES "")
+set(lasr_navigate_to_known_person_SETUP_PY_MODULE_DIRS "")

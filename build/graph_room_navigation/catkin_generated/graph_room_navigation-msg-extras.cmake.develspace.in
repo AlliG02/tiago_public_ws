@@ -1,0 +1,2 @@
+set(graph_room_navigation_MESSAGE_FILES "")
+set(graph_room_navigation_SERVICE_FILES "/home/k21066336/tiago_public_ws/src/legacy/graph_room_navigation/srv/AddRoom.srv;/home/k21066336/tiago_public_ws/src/legacy/graph_room_navigation/srv/AddCrossing.srv;/home/k21066336/tiago_public_ws/src/legacy/graph_room_navigation/srv/PlanToRoom.srv;/home/k21066336/tiago_public_ws/src/legacy/graph_room_navigation/srv/PlanToPoint.srv")

@@ -1,0 +1,4 @@
+[01m[K/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/src/segment_bb.cpp:[m[K In function ‘[01m[Kbool segment_bb(pcl::PointCloud<pcl::PointXYZRGB>::Ptr&, int, int, int, int, pcl::PointCloud<pcl::PointXYZRGB>::Ptr&)[m[K’:
+[01m[K/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/src/segment_bb.cpp:12:1:[m[K [01;35m[Kwarning: [m[Kno return statement in function returning non-void [[01;35m[K-Wreturn-type[m[K]
+   12 | [01;35m[K}[m[K
+      | [01;35m[K^[m[K

@@ -1,0 +1,7 @@
+set(graph_room_navigation_SETUP_PY_SETUP_MODULE "distutils.core")
+set(graph_room_navigation_SETUP_PY_VERSION "0.0.0")
+set(graph_room_navigation_SETUP_PY_SCRIPTS "")
+set(graph_room_navigation_SETUP_PY_PACKAGES "graph_room_navigation")
+set(graph_room_navigation_SETUP_PY_PACKAGE_DIRS "src/graph_room_navigation")
+set(graph_room_navigation_SETUP_PY_MODULES "")
+set(graph_room_navigation_SETUP_PY_MODULE_DIRS "")

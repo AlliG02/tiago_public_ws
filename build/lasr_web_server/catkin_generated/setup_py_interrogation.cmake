@@ -1,0 +1,7 @@
+set(lasr_web_server_SETUP_PY_SETUP_MODULE "distutils.core")
+set(lasr_web_server_SETUP_PY_VERSION "0.0.0")
+set(lasr_web_server_SETUP_PY_SCRIPTS "")
+set(lasr_web_server_SETUP_PY_PACKAGES "lasr_web_server")
+set(lasr_web_server_SETUP_PY_PACKAGE_DIRS "src/lasr_web_server")
+set(lasr_web_server_SETUP_PY_MODULES "")
+set(lasr_web_server_SETUP_PY_MODULE_DIRS "")

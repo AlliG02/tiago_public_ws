@@ -1,0 +1,1 @@
+/home/k21066336/tiago_public_ws/devel/.private/lasr_object_detection_yolo/lib/pkgconfig/lasr_object_detection_yolo.pc

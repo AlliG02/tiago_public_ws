@@ -1,0 +1,8 @@
+prefix=/home/k21066336/tiago_public_ws/devel/.private/lasr_shapely
+
+Name: lasr_shapely
+Description: Description of lasr_shapely
+Version: 0.0.0
+Cflags: -I/home/k21066336/tiago_public_ws/devel/.private/lasr_shapely/include
+Libs: -L${prefix}/lib 
+Requires: message_runtime

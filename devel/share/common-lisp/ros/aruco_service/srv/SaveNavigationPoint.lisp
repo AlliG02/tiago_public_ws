@@ -1,0 +1,1 @@
+/home/k21066336/tiago_public_ws/devel/.private/aruco_service/share/common-lisp/ros/aruco_service/srv/SaveNavigationPoint.lisp

@@ -49,22 +49,22 @@ add_custom_target(_lasr_vision_msgs_generate_messages_check_deps_${_filename}
 
 get_filename_component(_filename "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/YoloDetection.srv" NAME_WE)
 add_custom_target(_lasr_vision_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "lasr_vision_msgs" "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/YoloDetection.srv" "lasr_vision_msgs/Detection:std_msgs/Header:sensor_msgs/Image"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "lasr_vision_msgs" "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/YoloDetection.srv" "sensor_msgs/Image:lasr_vision_msgs/Detection:std_msgs/Header"
 )
 
 get_filename_component(_filename "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/BodyPixDetection.srv" NAME_WE)
 add_custom_target(_lasr_vision_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "lasr_vision_msgs" "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/BodyPixDetection.srv" "lasr_vision_msgs/BodyPixMaskRequest:std_msgs/Header:lasr_vision_msgs/BodyPixPose:sensor_msgs/Image:lasr_vision_msgs/BodyPixMask"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "lasr_vision_msgs" "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/BodyPixDetection.srv" "lasr_vision_msgs/BodyPixMaskRequest:std_msgs/Header:sensor_msgs/Image:lasr_vision_msgs/BodyPixPose:lasr_vision_msgs/BodyPixMask"
 )
 
 get_filename_component(_filename "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/TorchFaceFeatureDetection.srv" NAME_WE)
 add_custom_target(_lasr_vision_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "lasr_vision_msgs" "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/TorchFaceFeatureDetection.srv" "lasr_vision_msgs/ColourPrediction:lasr_vision_msgs/FeatureWithColour:std_msgs/Header:sensor_msgs/Image"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "lasr_vision_msgs" "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/TorchFaceFeatureDetection.srv" "lasr_vision_msgs/FeatureWithColour:sensor_msgs/Image:lasr_vision_msgs/ColourPrediction:std_msgs/Header"
 )
 
 get_filename_component(_filename "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/Recognise.srv" NAME_WE)
 add_custom_target(_lasr_vision_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "lasr_vision_msgs" "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/Recognise.srv" "lasr_vision_msgs/Detection:std_msgs/Header:sensor_msgs/Image"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "lasr_vision_msgs" "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/Recognise.srv" "sensor_msgs/Image:lasr_vision_msgs/Detection:std_msgs/Header"
 )
 
 #
@@ -114,25 +114,25 @@ _generate_msg_cpp(lasr_vision_msgs
 _generate_srv_cpp(lasr_vision_msgs
   "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/YoloDetection.srv"
   "${MSG_I_FLAGS}"
-  "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg"
+  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/lasr_vision_msgs
 )
 _generate_srv_cpp(lasr_vision_msgs
   "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/BodyPixDetection.srv"
   "${MSG_I_FLAGS}"
-  "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/BodyPixMaskRequest.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/BodyPixPose.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/BodyPixMask.msg"
+  "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/BodyPixMaskRequest.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/BodyPixPose.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/BodyPixMask.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/lasr_vision_msgs
 )
 _generate_srv_cpp(lasr_vision_msgs
   "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/TorchFaceFeatureDetection.srv"
   "${MSG_I_FLAGS}"
-  "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/ColourPrediction.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/FeatureWithColour.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg"
+  "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/FeatureWithColour.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/ColourPrediction.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/lasr_vision_msgs
 )
 _generate_srv_cpp(lasr_vision_msgs
   "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/Recognise.srv"
   "${MSG_I_FLAGS}"
-  "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg"
+  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/lasr_vision_msgs
 )
 
@@ -219,25 +219,25 @@ _generate_msg_eus(lasr_vision_msgs
 _generate_srv_eus(lasr_vision_msgs
   "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/YoloDetection.srv"
   "${MSG_I_FLAGS}"
-  "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg"
+  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/lasr_vision_msgs
 )
 _generate_srv_eus(lasr_vision_msgs
   "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/BodyPixDetection.srv"
   "${MSG_I_FLAGS}"
-  "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/BodyPixMaskRequest.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/BodyPixPose.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/BodyPixMask.msg"
+  "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/BodyPixMaskRequest.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/BodyPixPose.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/BodyPixMask.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/lasr_vision_msgs
 )
 _generate_srv_eus(lasr_vision_msgs
   "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/TorchFaceFeatureDetection.srv"
   "${MSG_I_FLAGS}"
-  "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/ColourPrediction.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/FeatureWithColour.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg"
+  "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/FeatureWithColour.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/ColourPrediction.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/lasr_vision_msgs
 )
 _generate_srv_eus(lasr_vision_msgs
   "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/Recognise.srv"
   "${MSG_I_FLAGS}"
-  "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg"
+  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/lasr_vision_msgs
 )
 
@@ -324,25 +324,25 @@ _generate_msg_lisp(lasr_vision_msgs
 _generate_srv_lisp(lasr_vision_msgs
   "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/YoloDetection.srv"
   "${MSG_I_FLAGS}"
-  "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg"
+  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/lasr_vision_msgs
 )
 _generate_srv_lisp(lasr_vision_msgs
   "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/BodyPixDetection.srv"
   "${MSG_I_FLAGS}"
-  "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/BodyPixMaskRequest.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/BodyPixPose.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/BodyPixMask.msg"
+  "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/BodyPixMaskRequest.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/BodyPixPose.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/BodyPixMask.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/lasr_vision_msgs
 )
 _generate_srv_lisp(lasr_vision_msgs
   "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/TorchFaceFeatureDetection.srv"
   "${MSG_I_FLAGS}"
-  "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/ColourPrediction.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/FeatureWithColour.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg"
+  "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/FeatureWithColour.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/ColourPrediction.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/lasr_vision_msgs
 )
 _generate_srv_lisp(lasr_vision_msgs
   "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/Recognise.srv"
   "${MSG_I_FLAGS}"
-  "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg"
+  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/lasr_vision_msgs
 )
 
@@ -429,25 +429,25 @@ _generate_msg_nodejs(lasr_vision_msgs
 _generate_srv_nodejs(lasr_vision_msgs
   "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/YoloDetection.srv"
   "${MSG_I_FLAGS}"
-  "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg"
+  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/lasr_vision_msgs
 )
 _generate_srv_nodejs(lasr_vision_msgs
   "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/BodyPixDetection.srv"
   "${MSG_I_FLAGS}"
-  "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/BodyPixMaskRequest.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/BodyPixPose.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/BodyPixMask.msg"
+  "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/BodyPixMaskRequest.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/BodyPixPose.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/BodyPixMask.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/lasr_vision_msgs
 )
 _generate_srv_nodejs(lasr_vision_msgs
   "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/TorchFaceFeatureDetection.srv"
   "${MSG_I_FLAGS}"
-  "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/ColourPrediction.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/FeatureWithColour.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg"
+  "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/FeatureWithColour.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/ColourPrediction.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/lasr_vision_msgs
 )
 _generate_srv_nodejs(lasr_vision_msgs
   "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/Recognise.srv"
   "${MSG_I_FLAGS}"
-  "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg"
+  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/lasr_vision_msgs
 )
 
@@ -534,25 +534,25 @@ _generate_msg_py(lasr_vision_msgs
 _generate_srv_py(lasr_vision_msgs
   "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/YoloDetection.srv"
   "${MSG_I_FLAGS}"
-  "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg"
+  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/lasr_vision_msgs
 )
 _generate_srv_py(lasr_vision_msgs
   "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/BodyPixDetection.srv"
   "${MSG_I_FLAGS}"
-  "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/BodyPixMaskRequest.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/BodyPixPose.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/BodyPixMask.msg"
+  "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/BodyPixMaskRequest.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/BodyPixPose.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/BodyPixMask.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/lasr_vision_msgs
 )
 _generate_srv_py(lasr_vision_msgs
   "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/TorchFaceFeatureDetection.srv"
   "${MSG_I_FLAGS}"
-  "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/ColourPrediction.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/FeatureWithColour.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg"
+  "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/FeatureWithColour.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/ColourPrediction.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/lasr_vision_msgs
 )
 _generate_srv_py(lasr_vision_msgs
   "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/srv/Recognise.srv"
   "${MSG_I_FLAGS}"
-  "/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg"
+  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/lasr_vision_msgs
 )
 

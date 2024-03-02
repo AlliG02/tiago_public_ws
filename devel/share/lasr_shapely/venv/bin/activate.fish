@@ -1,0 +1,1 @@
+/home/k21066336/tiago_public_ws/devel/.private/lasr_shapely/share/lasr_shapely/venv/bin/activate.fish

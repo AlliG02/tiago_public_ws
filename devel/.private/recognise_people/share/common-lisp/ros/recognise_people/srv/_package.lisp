@@ -1,0 +1,10 @@
+(cl:defpackage recognise_people-srv
+  (:use )
+  (:export
+   "RECOGNISEPEOPLE"
+   "<RECOGNISEPEOPLE-REQUEST>"
+   "RECOGNISEPEOPLE-REQUEST"
+   "<RECOGNISEPEOPLE-RESPONSE>"
+   "RECOGNISEPEOPLE-RESPONSE"
+  ))
+

@@ -1,0 +1,1 @@
+/home/k21066336/tiago_public_ws/devel/.private/lasr_object_detection_yolo/share/common-lisp/ros/lasr_object_detection_yolo/srv/YoloDetection.lisp

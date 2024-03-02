@@ -1,0 +1,1 @@
+/home/k21066336/tiago_public_ws/devel/.private/narrow_space_navigation/lib/python3/dist-packages/narrow_space_navigation/srv/__init__.py

@@ -1,0 +1,1 @@
+/home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/share/gennodejs/ros/lasr_interaction_server/srv/TextInteraction.js

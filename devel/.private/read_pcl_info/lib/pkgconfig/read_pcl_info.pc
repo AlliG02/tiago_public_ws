@@ -1,0 +1,8 @@
+prefix=/home/k21066336/tiago_public_ws/devel/.private/read_pcl_info
+
+Name: read_pcl_info
+Description: Description of read_pcl_info
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

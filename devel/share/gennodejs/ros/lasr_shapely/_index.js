@@ -1,0 +1,1 @@
+/home/k21066336/tiago_public_ws/devel/.private/lasr_shapely/share/gennodejs/ros/lasr_shapely/_index.js

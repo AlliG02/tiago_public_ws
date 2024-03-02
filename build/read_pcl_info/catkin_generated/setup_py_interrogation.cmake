@@ -1,0 +1,7 @@
+set(read_pcl_info_SETUP_PY_SETUP_MODULE "distutils.core")
+set(read_pcl_info_SETUP_PY_VERSION "0.0.0")
+set(read_pcl_info_SETUP_PY_SCRIPTS "")
+set(read_pcl_info_SETUP_PY_PACKAGES "read_pcl_info")
+set(read_pcl_info_SETUP_PY_PACKAGE_DIRS "src/read_pcl_info")
+set(read_pcl_info_SETUP_PY_MODULES "")
+set(read_pcl_info_SETUP_PY_MODULE_DIRS "")

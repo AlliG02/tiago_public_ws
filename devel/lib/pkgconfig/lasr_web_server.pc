@@ -1,0 +1,1 @@
+/home/k21066336/tiago_public_ws/devel/.private/lasr_web_server/lib/pkgconfig/lasr_web_server.pc

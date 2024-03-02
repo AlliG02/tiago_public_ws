@@ -1,0 +1,31 @@
+[35m[1mScanning dependencies of target std_msgs_generate_messages_cpp[0m
+[35m[1mScanning dependencies of target std_msgs_generate_messages_nodejs[0m
+[35m[1mScanning dependencies of target std_msgs_generate_messages_eus[0m
+[35m[1mScanning dependencies of target std_msgs_generate_messages_lisp[0m
+[35m[1mScanning dependencies of target _tiago_controllers_generate_messages_check_deps_ArmTorsoPos[0m
+[35m[1mScanning dependencies of target std_msgs_generate_messages_py[0m
+[  0%] Built target std_msgs_generate_messages_lisp
+[  0%] Built target std_msgs_generate_messages_py
+[  0%] Built target std_msgs_generate_messages_cpp
+[  0%] Built target std_msgs_generate_messages_eus
+[  0%] Built target std_msgs_generate_messages_nodejs
+[  0%] Built target _tiago_controllers_generate_messages_check_deps_ArmTorsoPos
+[35m[1mScanning dependencies of target tiago_controllers_generate_messages_lisp[0m
+[35m[1mScanning dependencies of target tiago_controllers_generate_messages_py[0m
+[35m[1mScanning dependencies of target tiago_controllers_generate_messages_cpp[0m
+[35m[1mScanning dependencies of target tiago_controllers_generate_messages_eus[0m
+[35m[1mScanning dependencies of target tiago_controllers_generate_messages_nodejs[0m
+[ 42%] [34m[1mGenerating EusLisp code from tiago_controllers/ArmTorsoPos.srv[0m
+[ 85%] [34m[1mGenerating Lisp code from tiago_controllers/ArmTorsoPos.srv[0m
+[ 85%] [34m[1mGenerating C++ code from tiago_controllers/ArmTorsoPos.srv[0m
+[ 85%] [34m[1mGenerating Python code from SRV tiago_controllers/ArmTorsoPos[0m
+[ 85%] [34m[1mGenerating Javascript code from tiago_controllers/ArmTorsoPos.srv[0m
+[ 85%] [34m[1mGenerating EusLisp manifest code for tiago_controllers[0m
+[ 85%] Built target tiago_controllers_generate_messages_nodejs
+[ 85%] Built target tiago_controllers_generate_messages_lisp
+[100%] [34m[1mGenerating Python srv __init__.py for tiago_controllers[0m
+[100%] Built target tiago_controllers_generate_messages_cpp
+[100%] Built target tiago_controllers_generate_messages_py
+[100%] Built target tiago_controllers_generate_messages_eus
+[35m[1mScanning dependencies of target tiago_controllers_generate_messages[0m
+[100%] Built target tiago_controllers_generate_messages

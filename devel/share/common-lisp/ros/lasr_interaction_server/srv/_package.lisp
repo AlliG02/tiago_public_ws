@@ -1,0 +1,1 @@
+/home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/share/common-lisp/ros/lasr_interaction_server/srv/_package.lisp

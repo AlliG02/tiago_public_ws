@@ -1,0 +1,8 @@
+prefix=/home/k21066336/tiago_public_ws/devel/.private/find_person_and_ask_open_door
+
+Name: find_person_and_ask_open_door
+Description: Description of find_person_and_ask_open_door
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

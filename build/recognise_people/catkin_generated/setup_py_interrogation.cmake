@@ -1,0 +1,7 @@
+set(recognise_people_SETUP_PY_SETUP_MODULE "distutils.core")
+set(recognise_people_SETUP_PY_VERSION "0.0.0")
+set(recognise_people_SETUP_PY_SCRIPTS "")
+set(recognise_people_SETUP_PY_PACKAGES "recognise_people")
+set(recognise_people_SETUP_PY_PACKAGE_DIRS "src/recognise_people")
+set(recognise_people_SETUP_PY_MODULES "")
+set(recognise_people_SETUP_PY_MODULE_DIRS "")

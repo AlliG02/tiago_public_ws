@@ -1,0 +1,7 @@
+set(narrow_space_navigation_SETUP_PY_SETUP_MODULE "distutils.core")
+set(narrow_space_navigation_SETUP_PY_VERSION "0.0.0")
+set(narrow_space_navigation_SETUP_PY_SCRIPTS "")
+set(narrow_space_navigation_SETUP_PY_PACKAGES "narrow_space_navigation")
+set(narrow_space_navigation_SETUP_PY_PACKAGE_DIRS "src/narrow_space_navigation")
+set(narrow_space_navigation_SETUP_PY_MODULES "")
+set(narrow_space_navigation_SETUP_PY_MODULE_DIRS "")

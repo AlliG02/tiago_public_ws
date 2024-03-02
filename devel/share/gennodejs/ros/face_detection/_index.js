@@ -1,0 +1,1 @@
+/home/k21066336/tiago_public_ws/devel/.private/face_detection/share/gennodejs/ros/face_detection/_index.js

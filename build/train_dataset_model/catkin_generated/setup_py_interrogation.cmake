@@ -1,0 +1,7 @@
+set(train_dataset_model_SETUP_PY_SETUP_MODULE "distutils.core")
+set(train_dataset_model_SETUP_PY_VERSION "0.0.0")
+set(train_dataset_model_SETUP_PY_SCRIPTS "")
+set(train_dataset_model_SETUP_PY_PACKAGES "train_dataset_model")
+set(train_dataset_model_SETUP_PY_PACKAGE_DIRS "src/train_dataset_model")
+set(train_dataset_model_SETUP_PY_MODULES "")
+set(train_dataset_model_SETUP_PY_MODULE_DIRS "")

@@ -1,0 +1,1 @@
+/home/k21066336/tiago_public_ws/devel/.private/cv_bridge3/share/cv_bridge3/cmake/cv_bridge3Config.cmake
