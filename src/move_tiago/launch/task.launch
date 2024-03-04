@@ -1,0 +1,13 @@
+<launch>
+
+    <node name="node1" pkg="move_tiago" type="detect.py" output="screen">
+    </node>
+
+    <node name="node2" pkg="move_tiago" type="broadcaster.py" output="screen">
+    </node>
+
+    <node name="node3" pkg="move_tiago" type="move.py" output="screen">
+    </node>
+
+
+</launch>

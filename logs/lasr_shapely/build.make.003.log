@@ -1,0 +1,10 @@
+[  5%] [34m[1mPer-package virtualenv target[0m
+[ 29%] Built target lasr_shapely_generate_virtualenv
+[ 29%] Built target _lasr_shapely_generate_messages_check_deps_PointsInPolygon2D
+[ 29%] Built target _lasr_shapely_generate_messages_check_deps_PointInPolygon2D
+[ 41%] Built target lasr_shapely_generate_messages_lisp
+[ 52%] Built target lasr_shapely_generate_messages_cpp
+[ 82%] Built target lasr_shapely_generate_messages_py
+[ 82%] Built target lasr_shapely_generate_messages_nodejs
+[100%] Built target lasr_shapely_generate_messages_eus
+[100%] Built target lasr_shapely_generate_messages

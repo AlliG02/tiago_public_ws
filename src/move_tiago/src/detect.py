@@ -3,7 +3,10 @@
 import rospy
 from sensor_msgs.msg import Image
 from lasr_vision_msgs.srv import YoloDetection, YoloDetectionRequest
-from geometry_msgs.msg import PoseWithCovarianceStamped, Pose, Point, Quaternion
+from geometry_msgs.msg import Point, TransformStamped
+
+import tf2_ros
+import tf_conversions
 
 # create service proxy
 detect_service = rospy.ServiceProxy('/yolov8/detect', YoloDetection)
@@ -27,14 +30,14 @@ def callback(img: Image):
         # send request
         response = detect_service(request)
 
+        # output detection information to terminal
+        # send detected coords to detect topic
+        # update TF tree and broadcast transformation message
         if response.detected_objects:
             for resp in response.detected_objects:
                 x_cord, y_cord, width, height = resp.xywh
                 coord_publisher(x_cord, y_cord)
                 print(resp)
-
-# make subscriber to camera topic + pass Image information + define callback function
-image_subscriber = rospy.Subscriber('/xtion/rgb/image_raw', Image, callback)
 
 # publish detected coordinates to 'coordinates' topic
 def coord_publisher(x, y):
@@ -66,6 +69,7 @@ def coord_publisher(x, y):
 
 if __name__ == '__main__':
     rospy.init_node('detect_coords_node')
-
+    # make subscriber to camera topic + pass Image information + define callback function
+    image_subscriber = rospy.Subscriber('/xtion/rgb/image_raw', Image, callback)
     rospy.spin()
 
