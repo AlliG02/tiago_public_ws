@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
 import rospy
-from sensor_msgs.msg import Image
+import numpy as np
+from sensor_msgs.msg import Image, PointCloud2
+from sensor_msgs import point_cloud2
 from lasr_vision_msgs.srv import YoloDetection, YoloDetectionRequest
 from geometry_msgs.msg import Point, TransformStamped
 
@@ -34,9 +36,16 @@ def callback(img: Image):
         # send detected coords to detect topic
         # update TF tree and broadcast transformation message
         if response.detected_objects:
+            rospy.loginfo("DETECT")
             for resp in response.detected_objects:
-                x_cord, y_cord, width, height = resp.xywh
-                coord_publisher(x_cord, y_cord)
+                point = calculate_average_point(resp.xyseg)
+
+
+
+                print(point)
+                # coord_publisher(point.x, point.y)
+                coord_publisher(1.45, 0.02) # hard coded test case
+                print(coord_publisher(point.x, point.y))
                 print(resp)
 
 # publish detected coordinates to 'coordinates' topic
@@ -67,9 +76,33 @@ def coord_publisher(x, y):
         # Sleep to maintain the desired publishing rate
         rate.sleep()
 
+def calculate_average_point(mask_seg):
+    pcl = rospy.wait_for_message('/xtion/depth_registered/points', PointCloud2)
+    pcl.header # pass this to the broadcaster
+    depth_data = point_cloud2.read_points(pcl, field_names=("x", "y", "z"), skip_nans=True)
+    depth_array = np.array(list(depth_data))
+
+    total_x = 0.0
+    total_y = 0.0
+    total_z = 0.0
+    num_points = len(mask_seg)
+    for point in mask_seg:
+        x, y, z = depth_array[point]
+        total_x += x
+        total_y += y
+        total_z += z
+
+    average_x = total_x / num_points
+    average_y = total_y / num_points
+    average_z = total_z / num_points
+
+    return Point(x=average_x, y=average_y, z=average_z)
+
+
 if __name__ == '__main__':
     rospy.init_node('detect_coords_node')
     # make subscriber to camera topic + pass Image information + define callback function
     image_subscriber = rospy.Subscriber('/xtion/rgb/image_raw', Image, callback)
+
     rospy.spin()
 
