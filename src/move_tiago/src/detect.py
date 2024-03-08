@@ -40,11 +40,9 @@ def callback(img: Image):
             for resp in response.detected_objects:
                 point = calculate_average_point(resp.xyseg)
 
-
-
                 print(point)
                 # coord_publisher(point.x, point.y)
-                coord_publisher(1.45, 0.02) # hard coded test case
+                # coord_publisher(1.45, 0.02) # hard coded test case
                 print(coord_publisher(point.x, point.y))
                 print(resp)
 
@@ -76,9 +74,12 @@ def coord_publisher(x, y):
         # Sleep to maintain the desired publishing rate
         rate.sleep()
 
+# current x: 0.0007836426540656172
+# desired x:  0.5673575401306152
+
 def calculate_average_point(mask_seg):
     pcl = rospy.wait_for_message('/xtion/depth_registered/points', PointCloud2)
-    pcl.header # pass this to the broadcaster
+    print(pcl.header) # pass this to the broadcaster
     depth_data = point_cloud2.read_points(pcl, field_names=("x", "y", "z"), skip_nans=True)
     depth_array = np.array(list(depth_data))
 
