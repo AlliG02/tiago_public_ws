@@ -30,7 +30,7 @@ def broadcast_transform(p: Point):
             # Broadcast the transform message
             tf_broadcaster.sendTransform(transform_msg)
 
-            rospy.loginfo("broadcasting transformation")
+            rospy.loginfo(f'broadcasting transformation of {p.x}, {p.y}')
 
             rospy.sleep(1.0)  # Sleep for 1 second
     except rospy.ROSInterruptException:
@@ -39,6 +39,7 @@ def broadcast_transform(p: Point):
 if __name__ == '__main__':
 
     rospy.init_node('transform_broadcaster', anonymous=True)
+    # start broadcasting transformations
     coords_subscriber = rospy.Subscriber('coordinates', Point, broadcast_transform)
     tf_coords_publisher = rospy.Publisher('tfs', Point, queue_size=10)
 
@@ -46,9 +47,9 @@ if __name__ == '__main__':
     tf_listener = tf2_ros.TransformListener(tf_buffer)
 
     # listen for transformations
-    # send transformations to move node
+    # publish transformations to tfs for move node
     while not rospy.is_shutdown():
-        if tf_buffer.can_transform('base_link', 'map', rospy.Time(0)):
+        if tf_buffer.can_transform('xtion_rgb_optical_frame', 'map', rospy.Time(0)):
             print("Transform available")
             transformation = tf_buffer.lookup_transform('xtion_rgb_optical_frame', 'map', rospy.Time(0))
 

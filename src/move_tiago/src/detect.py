@@ -36,14 +36,17 @@ def callback(img: Image):
         # send detected coords to detect topic
         # update TF tree and broadcast transformation message
         if response.detected_objects:
-            rospy.loginfo("DETECT")
+            rospy.loginfo("DETECTION")
             for resp in response.detected_objects:
+
                 point = calculate_average_point(resp.xyseg)
 
                 print(point)
                 # coord_publisher(point.x, point.y)
                 # coord_publisher(1.45, 0.02) # hard coded test case
-                print(coord_publisher(point.x, point.y))
+                # publish average x and y to coordinates
+                coord_publisher(point.x, point.y)
+                # print(coord_publisher(point.x, point.y))
                 print(resp)
 
 # publish detected coordinates to 'coordinates' topic
@@ -78,9 +81,9 @@ def coord_publisher(x, y):
 # desired x:  0.5673575401306152
 
 def calculate_average_point(mask_seg):
-    pcl = rospy.wait_for_message('/xtion/depth_registered/points', PointCloud2)
-    print(pcl.header) # pass this to the broadcaster
-    depth_data = point_cloud2.read_points(pcl, field_names=("x", "y", "z"), skip_nans=True)
+    pcl = rospy.wait_for_message('/xtion/depth_registered/points', PointCloud2) # get point cloud
+    print(pcl.header) # frame of the point cloud
+    depth_data = point_cloud2.read_points(pcl, field_names=("x", "y", "z"), skip_nans=True) # extract x, y, z from points
     depth_array = np.array(list(depth_data))
 
     total_x = 0.0
@@ -88,13 +91,13 @@ def calculate_average_point(mask_seg):
     total_z = 0.0
     num_points = len(mask_seg)
     for point in mask_seg:
-        x, y, z = depth_array[point]
+        x, y, z = depth_array[point] # for every point in the seg mask inside the pcl, extract x, y, z
         total_x += x
         total_y += y
         total_z += z
 
-    average_x = total_x / num_points
-    average_y = total_y / num_points
+    average_x = (total_x / num_points) + 0.5
+    average_y = (total_y / num_points) + 0.1
     average_z = total_z / num_points
 
     return Point(x=average_x, y=average_y, z=average_z)
@@ -106,4 +109,3 @@ if __name__ == '__main__':
     image_subscriber = rospy.Subscriber('/xtion/rgb/image_raw', Image, callback)
 
     rospy.spin()
-

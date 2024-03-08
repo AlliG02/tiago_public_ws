@@ -15,7 +15,8 @@ def callback(point):
     # dest.position.z = 0.0
     # dest.orientation.w = 1.0  # Assuming no rotation
 
-    dest.position.x = point.x + 2.1
+    # we take our transformed x and ys, put them into a pose and send to base controller
+    dest.position.x = point.x
     dest.position.y = point.y
     dest.position.z = 0.0
     dest.orientation.w = 1.0  # Assuming no rotation
@@ -25,5 +26,5 @@ def callback(point):
 
 if __name__ == "__main__":
     rospy.init_node("move")
-    coord_sub = rospy.Subscriber("tfs", Point, callback)
+    coord_sub = rospy.Subscriber("coordinates", Point, callback)
     rospy.spin()
