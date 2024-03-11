@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="walking_person">
+    <!-- Include the visual and collision properties of the model -->
+    <link name="link">
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <!-- Replace with the path to the 3D model file (.dae) -->
+            <uri>walk.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+
+    <!-- Add an animation for walking -->
+    <animation name="walk">
+      <!-- Specify the walking animation file (.dae) and other properties -->
+      <filename>walk.dae</filename>
+      <!-- Adjust other animation properties as needed -->
+      <interpolate_x>true</interpolate_x>
+      <playback_speed>1.0</playback_speed> <!-- Adjust as necessary -->
+    </animation>
+  </model>
+</sdf>

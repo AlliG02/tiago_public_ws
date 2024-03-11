@@ -8,6 +8,11 @@
       <skin>
         <filename>walk.dae</filename>
       </skin>
+      <animation name="animation">
+        <filename>walk.dae</filename>
+	<interpolate_x>true</interpolate_x>
+	<playback_speed>1.5</playback_speed>
+      </animation>
     </actor>
   </world>
 </sdf>
