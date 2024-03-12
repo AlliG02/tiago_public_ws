@@ -16,7 +16,7 @@ def callback(point):
     # dest.orientation.w = 1.0  # Assuming no rotation
 
     # we take our transformed x and ys, put them into a pose and send to base controller
-    dest.position.x = point.x - 0.8
+    dest.position.x = point.x
     dest.position.y = point.y
     dest.position.z = 0.0
     dest.orientation.w = 1.0  # Assuming no rotation
