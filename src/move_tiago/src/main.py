@@ -35,74 +35,6 @@ def get_tiago_pose():
 
     return tiago_pose
 
-
-# for every detection, calc person point and publish coords
-def send_detections_to_controller(img: Image):
-    global counter
-    global mask
-
-    counter = counter + 1
-
-    x = 0
-    y = 0
-
-    if counter % 10 == 0:
-        # instantiate the service request
-        request = YoloDetectionRequest()
-        request.image_raw = img # sensor_msgs/Image
-        request.dataset = "yolov8n-seg.pt" # YOLOv8 model, auto-downloads
-        request.confidence = 0.5 # minimum confidence to include in results
-        request.nms = 0.3 # coord_publisher(point.x, point.y)n maximal supression
-        # fill in service fields
-
-        # send request
-        response = detect_service(request)
-
-        # output detection information to terminal
-        # send detected coords to detect topic
-        # update TF tree and broadcast transformation message
-        if response.detected_objects:
-            rospy.loginfo("DETECTION")
-            for resp in response.detected_objects:
-
-                mask = resp.xyseg
-
-                rospy.loginfo(f"Found {resp.name}")
-                point = get_person_pose(mask) # calc where person is
-                print(point)
-                final_point = make_point_accessible(point)
-                print(final_point)
-                x = final_point.x  # - 0.76 works for movement along the x axis
-                y = final_point.y
-                # coord_publisher(point.x, point.y)
-                # coord_publisher(1.45, 0.02) # hard coded test case
-                # publish average x and y to coordinates
-
-                # print(coord_publisher(point.x, point.y))
-
-                coord_publisher(x, y) # send point to movement controller
-        else:
-            rospy.loginfo("NO DETECTION")
-
-
-def switch_to_idle_state():
-    global subscriber_enabled
-
-    if subscriber_enabled:
-        # If the subscriber is currently enabled, turn it off
-        image_subscriber.unregister()
-        subscriber_enabled = False
-
-
-def switch_to_following_state():
-    global subscriber_enabled
-    global image_subscriber
-
-    if not subscriber_enabled:
-        # If the subscriber is currently disabled, turn it back on
-        image_subscriber = rospy.Subscriber('/xtion/rgb/image_raw', Image, send_detections_to_controller)  # start detecting
-        subscriber_enabled = True
-
 # publish detected coordinates to 'coordinates' topic
 def coord_publisher(x, y):
     # Initialize the ROS node
@@ -251,11 +183,73 @@ def is_tiago_within_range():
         print("Out of range")
         return False
 
-class MainNode():
+class MainNode:
     def __init__(self):
         # Initialize your subscriber
         self.image_subscriber = rospy.Subscriber('/xtion/rgb/image_raw', Image, self.send_detections_to_controller)
         self.subscriber_enabled = True  # Flag to track the subscriber state
+
+    # for every detection, calc person point and publish coords
+    def send_detections_to_controller(self, img: Image):
+
+        global counter
+        global mask
+
+        counter = counter + 1
+
+        x = 0
+        y = 0
+
+        if counter % 10 == 0:
+            # instantiate the service request
+            request = YoloDetectionRequest()
+            request.image_raw = img  # sensor_msgs/Image
+            request.dataset = "yolov8n-seg.pt"  # YOLOv8 model, auto-downloads
+            request.confidence = 0.5  # minimum confidence to include in results
+            request.nms = 0.3  # coord_publisher(point.x, point.y)n maximal supression
+            # fill in service fields
+
+            # send request
+            response = detect_service(request)
+
+            # output detection information to terminal
+            # send detected coords to detect topic
+            # update TF tree and broadcast transformation message
+            if response.detected_objects:
+                rospy.loginfo("DETECTION")
+                for resp in response.detected_objects:
+                    mask = resp.xyseg
+
+                    rospy.loginfo(f"Found {resp.name}")
+                    point = get_person_pose(mask)  # calc where person is
+                    print(point)
+                    final_point = make_point_accessible(point)
+                    print(final_point)
+                    x = final_point.x  # - 0.76 works for movement along the x axis
+                    y = final_point.y
+                    # coord_publisher(point.x, point.y)
+                    # coord_publisher(1.45, 0.02) # hard coded test case
+                    # publish average x and y to coordinates
+
+                    # print(coord_publisher(point.x, point.y))
+
+                    coord_publisher(x, y)  # send point to movement controller
+            else:
+                rospy.loginfo("NO DETECTION")
+
+    def switch_to_idle_state(self):
+        if self.subscriber_enabled:
+            # If the subscriber is currently enabled, turn it off
+            self.image_subscriber.unregister()
+            self.subscriber_enabled = False
+            print("Turing img sub off")
+
+    def switch_to_following_state(self):
+        if not self.subscriber_enabled:
+            # If the subscriber is currently disabled, turn it back on
+            self.image_subscriber = rospy.Subscriber('/xtion/rgb/image_raw', Image, self.send_detections_to_controller)  # start detecting
+            self.subscriber_enabled = True
+            print("Turning img sub on")
 
 
 class Initial(smach.State):
@@ -275,10 +269,9 @@ class Following(smach.State):
         # All follow logic
 
         if mask:
-            print("in here")
             if is_tiago_within_range():
                 # stop subscriber
-                switch_to_idle_state()
+                m.switch_to_idle_state()
                 print("In front of person")
                 return 'outcome1'
             else:
@@ -294,7 +287,7 @@ class Idle(smach.State):
         rospy.loginfo('Executing idle state')
         # Go to following state
         if not is_tiago_within_range():
-            switch_to_following_state()
+            m.switch_to_following_state()
             return 'outcome1'
         else:
             return 'outcome2'
@@ -325,7 +318,8 @@ def start_state_machine():
 if __name__ == '__main__':
 
     rospy.init_node('main_node')
-    image_subscriber = rospy.Subscriber('/xtion/rgb/image_raw', Image, send_detections_to_controller)  # start detecting
+    m = MainNode()
+    image_subscriber = rospy.Subscriber('/xtion/rgb/image_raw', Image, m.send_detections_to_controller)  # start detecting
     detect_service = rospy.ServiceProxy('/yolov8/detect', YoloDetection)     # create service proxy
     tfb = tf2_ros.Buffer()
     tf_listener = tf2_ros.TransformListener(tfb)
@@ -333,6 +327,5 @@ if __name__ == '__main__':
     mask = []
     counter = 0
     start_state_machine()
-    subscriber_enabled = True
 
     rospy.spin()
