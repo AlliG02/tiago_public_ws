@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import time
 
 import rospy
 import numpy as np
@@ -13,16 +14,32 @@ import tf2_geometry_msgs
 import tf2_ros
 import tf_conversions
 
-# create service proxy
-detect_service = rospy.ServiceProxy('/yolov8/detect', YoloDetection)
-tfb = tf2_ros.Buffer()
-tf_listener = tf2_ros.TransformListener(tfb)
+def get_tiago_pose():
+
+    # get current pose of tiago
+    tp = rospy.wait_for_message("/robot_pose", PoseWithCovarianceStamped)
+
+    point = Point(x=tp.pose.pose.position.x, y=tp.pose.pose.position.y, z=tp.pose.pose.position.z)
+
+    point_stamped = PointStamped()
+    point_stamped.point = point
+    point_stamped.header.frame_id = "base_link"
+    point_stamped.header.stamp = rospy.Time(0)
+
+    try:
+        tiago_pose = tfb.transform(point_stamped, "map")
+        # rospy.loginfo(f"Tiago pose {tiago_pose}")
+    except Exception:
+        rospy.loginfo("No transformation available")
+
+    return tiago_pose
 
 
-counter = 0
 # for every detection, calc person point and publish coords
-def callback(img: Image):
+def send_detections_to_controller(img: Image):
     global counter
+    global mask
+
     counter = counter + 1
 
     x = 0
@@ -47,10 +64,13 @@ def callback(img: Image):
             rospy.loginfo("DETECTION")
             for resp in response.detected_objects:
 
+                mask = resp.xyseg
+
                 rospy.loginfo(f"Found {resp.name}")
-                point = calculate_average_point_and_transform(resp.xyseg) # calc where person is
+                point = calculate_person_point_and_transform(mask) # calc where person is
                 print(point)
-                final_point = move_point(point)
+                final_point = make_point_accessible(point)
+                print(final_point)
                 x = final_point.x  # - 0.76 works for movement along the x axis
                 y = final_point.y
                 # coord_publisher(point.x, point.y)
@@ -62,7 +82,6 @@ def callback(img: Image):
                 coord_publisher(x, y) # send point to movement controller
         else:
             rospy.loginfo("NO DETECTION")
-
 
 # publish detected coordinates to 'coordinates' topic
 def coord_publisher(x, y):
@@ -91,11 +110,9 @@ def coord_publisher(x, y):
     # Sleep to maintain the desired publishing rate
     rate.sleep()
 
-# current x: 0.0007836426540656172
-# desired x:  0.5673575401306152
-
 # calculate the point of the person
-def calculate_average_point_and_transform(mask_seg):
+def calculate_person_point_and_transform(mask_seg):
+
     pcl = rospy.wait_for_message('/xtion/depth_registered/points', PointCloud2) # get point cloud
     # print(pcl.header.frame_id) # frame of the point cloud
     depth_data = point_cloud2.read_points(pcl, field_names=("x", "y", "z"), skip_nans=True) # extract x, y, z from points
@@ -123,41 +140,29 @@ def calculate_average_point_and_transform(mask_seg):
 
     try:
         point_stamped = tfb.transform(point_stamped, "map")
-        rospy.loginfo("Point transformation successful")
+        # rospy.loginfo("Point transformation successful")
     except Exception:
         rospy.loginfo("Transform unavailable")
         pass
 
     return point_stamped
 
+
 # move the person point out of the obstruction zone
-def move_point(person):
+def make_point_accessible(person):
 
     # get current pose of tiago
-    tp = rospy.wait_for_message("/robot_pose", PoseWithCovarianceStamped)
-
-    point = Point(x= tp.pose.pose.position.x ,y=tp.pose.pose.position.y ,z=tp.pose.pose.position.z)
-
-    point_stamped = PointStamped()
-    point_stamped.point = point
-    point_stamped.header.frame_id = "base_link"
-    point_stamped.header.stamp = rospy.Time(0)
-
-    try:
-        tiago_pose = tfb.transform(point_stamped, "map")
-        # rospy.loginfo(f"Tiago pose {tiago_pose}")
-    except Exception:
-        rospy.loginfo("No transformation available")
+    tiago_pose = get_tiago_pose()
 
     # move point out of obstruction zone
 
     distance_x = abs(tiago_pose.point.x - person.point.x)
     distance_y = abs(tiago_pose.point.y - person.point.y)
 
-    print(f"Tiago x: {tiago_pose.point.x}. y:{tiago_pose.point.y}")
-    print(f"Person x: {person.point.x}. y:{person.point.y}")
+    # print(f"Tiago x: {tiago_pose.point.x}. y:{tiago_pose.point.y}")
+    # print(f"Person x: {person.point.x}. y:{person.point.y}")
 
-    k = 0.6
+    k = 0.55
 
     new_pose = Point()
     new_pose.x = tiago_pose.point.x + (k * distance_x)
@@ -165,8 +170,47 @@ def move_point(person):
 
     return new_pose
 
-def start_sub():
-    image_subscriber = rospy.Subscriber('/xtion/rgb/image_raw', Image, callback)
+
+def check_if_reached_person():
+
+    global mask
+
+    tiago_pose = get_tiago_pose()
+
+    person_point = calculate_person_point_and_transform(mask) # need to subscribe first for this to work
+
+    r = 1.2
+
+    x_low = round(person_point.point.x - r, 1)
+    x_high = round(person_point.point.x + r, 1)
+    y_low = round(person_point.point.y - r, 1)
+    y_high = round(person_point.point.y + r, 1)
+
+    tx = round(tiago_pose.point.x, 1)
+    ty = round(tiago_pose.point.y, 1)
+
+    print(f"tx {tx}, ty {ty}")
+
+    x_range = np.arange(x_low, x_high, 0.1)
+    y_range = np.arange(y_low, y_high, 0.1)
+
+    print(x_range)
+    print(y_range)
+
+    print(f"Person {person_point.point.x} {person_point.point.y}, Tiago {tiago_pose.point.x} {tiago_pose.point.y}")
+
+    if tiago_pose.point.y in np.arange(y_low, y_high):
+        print("True y")
+    else:
+        print("False y")
+
+    if (tx in x_range) or (ty in y_range):
+        rospy.loginfo("In range of person")
+        return True
+    else:
+        rospy.loginfo("Not in range of person")
+        return False
+
 
 class Initial(smach.State):
     def __init__(self):
@@ -178,21 +222,36 @@ class Initial(smach.State):
 
 class Following(smach.State):
     def __init__(self):
-        smach.State.__init__(self, outcomes=['outcome1'])
+        smach.State.__init__(self, outcomes=['outcome1', 'outcome2'])
 
     def execute(self, userdata):
         rospy.loginfo('Executing following state')
         # All follow logic
-        return 'outcome1'  # Transition to outcome1 or outcome2 based on your logic
 
-class Idle(smach.state):
+        image_subscriber = rospy.Subscriber('/xtion/rgb/image_raw', Image, send_detections_to_controller) # start detecting
+        if mask:
+            print("in here")
+            if check_if_reached_person():
+                # stop subscriber
+                image_subscriber.unregister()
+                print("In front of person")
+                return 'outcome1'
+            else:
+                return 'outcome2'
+        else:
+            return 'outcome2'
+
+class Idle(smach.State):
     def __init__(self):
-        smach.State.__init__(self, outcomes=['outcome1'])
+        smach.State.__init__(self, outcomes=['outcome1', 'outcome2'])
 
-    def execute(self, userdata): 
+    def execute(self, userdata):
         rospy.loginfo('Executing idle state')
         # Go to following state
-        return 'outcome1'
+        if not check_if_reached_person():
+            return 'outcome1'
+        else:
+            return 'outcome2'
 
 # Main function
 def start_state_machine():
@@ -203,8 +262,8 @@ def start_state_machine():
     with sm:
         # Add states to the container
         smach.StateMachine.add('INITIAL', Initial(), transitions={'outcome1':'FOLLOWING'})
-        smach.StateMachine.add('FOLLOWING', Following(), transitions={'outcome1':'IDLE'})
-        smach.StateMachine.add('IDLE', Idle(), transitions={'outcome1':'FOLLOWING'})
+        smach.StateMachine.add('FOLLOWING', Following(), transitions={'outcome1':'IDLE', 'outcome2':'FOLLOWING'})
+        smach.StateMachine.add('IDLE', Idle(), transitions={'outcome1':'FOLLOWING', 'outcome2':'IDLE'})
 
     # Create and start the introspection server
     sis = smach_ros.IntrospectionServer('server_name', sm, '/SM_ROOT')
@@ -218,8 +277,15 @@ def start_state_machine():
     sis.stop()
 
 if __name__ == '__main__':
+
     rospy.init_node('main_node')
+    # create service proxy
+    detect_service = rospy.ServiceProxy('/yolov8/detect', YoloDetection)
+    tfb = tf2_ros.Buffer()
+    tf_listener = tf2_ros.TransformListener(tfb)
+    mask = []
+    counter = 0
+
     start_state_machine()
     # make subscriber to camera topic + pass Image information + define callback function
-    start_sub()
     rospy.spin()
