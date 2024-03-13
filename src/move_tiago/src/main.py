@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import math
 import time
 
 import rospy
@@ -67,7 +68,7 @@ def send_detections_to_controller(img: Image):
                 mask = resp.xyseg
 
                 rospy.loginfo(f"Found {resp.name}")
-                point = calculate_person_point_and_transform(mask) # calc where person is
+                point = get_person_pose(mask) # calc where person is
                 print(point)
                 final_point = make_point_accessible(point)
                 print(final_point)
@@ -82,6 +83,25 @@ def send_detections_to_controller(img: Image):
                 coord_publisher(x, y) # send point to movement controller
         else:
             rospy.loginfo("NO DETECTION")
+
+
+def switch_to_idle_state():
+    global subscriber_enabled
+
+    if subscriber_enabled:
+        # If the subscriber is currently enabled, turn it off
+        image_subscriber.unregister()
+        subscriber_enabled = False
+
+
+def switch_to_following_state():
+    global subscriber_enabled
+    global image_subscriber
+
+    if not subscriber_enabled:
+        # If the subscriber is currently disabled, turn it back on
+        image_subscriber = rospy.Subscriber('/xtion/rgb/image_raw', Image, send_detections_to_controller)  # start detecting
+        subscriber_enabled = True
 
 # publish detected coordinates to 'coordinates' topic
 def coord_publisher(x, y):
@@ -111,7 +131,7 @@ def coord_publisher(x, y):
     rate.sleep()
 
 # calculate the point of the person
-def calculate_person_point_and_transform(mask_seg):
+def get_person_pose(mask_seg):
 
     pcl = rospy.wait_for_message('/xtion/depth_registered/points', PointCloud2) # get point cloud
     # print(pcl.header.frame_id) # frame of the point cloud
@@ -171,45 +191,71 @@ def make_point_accessible(person):
     return new_pose
 
 
-def check_if_reached_person():
+# def check_if_reached_person():
+#
+#     global mask
+#
+#     tiago_pose = get_tiago_pose()
+#
+#     person_point = calculate_person_point_and_transform(mask) # need to subscribe first for this to work
+#
+#     r = 1.2
+#
+#     x_low = round(person_point.point.x - r, 1)
+#     x_high = round(person_point.point.x + r, 1)
+#     y_low = round(person_point.point.y - r, 1)
+#     y_high = round(person_point.point.y + r, 1)
+#
+#     tx = round(tiago_pose.point.x, 1)
+#     ty = round(tiago_pose.point.y, 1)
+#
+#     print(f"tx {tx}, ty {ty}")
+#
+#     x_range = np.arange(x_low, x_high, 0.1)
+#     y_range = np.arange(y_low, y_high, 0.1)
+#
+#     print(x_range)
+#     print(y_range)
+#
+#     print(f"Person {person_point.point.x} {person_point.point.y}, Tiago {tiago_pose.point.x} {tiago_pose.point.y}")
+#
+#     if tiago_pose.point.y in np.arange(y_low, y_high):
+#         print("True y")
+#     else:
+#         print("False y")
+#
+#     if (tx in x_range) or (ty in y_range):
+#         rospy.loginfo("In range of person")
+#         return True
+#     else:
+#         rospy.loginfo("Not in range of person")
+#         return False
+
+def is_tiago_within_range():
 
     global mask
 
     tiago_pose = get_tiago_pose()
+    person_pose = get_person_pose(mask)
 
-    person_point = calculate_person_point_and_transform(mask) # need to subscribe first for this to work
+    # Calculate the distance between Tiago's pose and the person's pose
+    distance = math.sqrt((tiago_pose.point.x - person_pose.point.x) ** 2 + (tiago_pose.point.y - person_pose.point.y) ** 2)
 
-    r = 1.2
+    radius = 1.0
 
-    x_low = round(person_point.point.x - r, 1)
-    x_high = round(person_point.point.x + r, 1)
-    y_low = round(person_point.point.y - r, 1)
-    y_high = round(person_point.point.y + r, 1)
-
-    tx = round(tiago_pose.point.x, 1)
-    ty = round(tiago_pose.point.y, 1)
-
-    print(f"tx {tx}, ty {ty}")
-
-    x_range = np.arange(x_low, x_high, 0.1)
-    y_range = np.arange(y_low, y_high, 0.1)
-
-    print(x_range)
-    print(y_range)
-
-    print(f"Person {person_point.point.x} {person_point.point.y}, Tiago {tiago_pose.point.x} {tiago_pose.point.y}")
-
-    if tiago_pose.point.y in np.arange(y_low, y_high):
-        print("True y")
-    else:
-        print("False y")
-
-    if (tx in x_range) or (ty in y_range):
-        rospy.loginfo("In range of person")
+    # Check if the distance is less than or equal to the radius
+    if distance <= radius:
+        print("In range")
         return True
     else:
-        rospy.loginfo("Not in range of person")
+        print("Out of range")
         return False
+
+class MainNode():
+    def __init__(self):
+        # Initialize your subscriber
+        self.image_subscriber = rospy.Subscriber('/xtion/rgb/image_raw', Image, self.send_detections_to_controller)
+        self.subscriber_enabled = True  # Flag to track the subscriber state
 
 
 class Initial(smach.State):
@@ -228,12 +274,11 @@ class Following(smach.State):
         rospy.loginfo('Executing following state')
         # All follow logic
 
-        image_subscriber = rospy.Subscriber('/xtion/rgb/image_raw', Image, send_detections_to_controller) # start detecting
         if mask:
             print("in here")
-            if check_if_reached_person():
+            if is_tiago_within_range():
                 # stop subscriber
-                image_subscriber.unregister()
+                switch_to_idle_state()
                 print("In front of person")
                 return 'outcome1'
             else:
@@ -248,7 +293,8 @@ class Idle(smach.State):
     def execute(self, userdata):
         rospy.loginfo('Executing idle state')
         # Go to following state
-        if not check_if_reached_person():
+        if not is_tiago_within_range():
+            switch_to_following_state()
             return 'outcome1'
         else:
             return 'outcome2'
@@ -279,13 +325,14 @@ def start_state_machine():
 if __name__ == '__main__':
 
     rospy.init_node('main_node')
-    # create service proxy
-    detect_service = rospy.ServiceProxy('/yolov8/detect', YoloDetection)
+    image_subscriber = rospy.Subscriber('/xtion/rgb/image_raw', Image, send_detections_to_controller)  # start detecting
+    detect_service = rospy.ServiceProxy('/yolov8/detect', YoloDetection)     # create service proxy
     tfb = tf2_ros.Buffer()
     tf_listener = tf2_ros.TransformListener(tfb)
+
     mask = []
     counter = 0
-
     start_state_machine()
-    # make subscriber to camera topic + pass Image information + define callback function
+    subscriber_enabled = True
+
     rospy.spin()
