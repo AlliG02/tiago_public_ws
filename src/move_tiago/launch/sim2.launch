@@ -1,0 +1,11 @@
+<launch>
+
+    <arg name="public_sim"   default="true"/>
+
+    <include file="$(find tiago_2dnav_gazebo)/launch/tiago_navigation.launch">
+        <arg name="public_sim" value="$(arg public_sim)"/>
+    </include>
+
+    <node pkg="lasr_vision_yolov8" name="service" type="service" output="screen"/>
+
+</launch>

@@ -74,11 +74,15 @@ def get_person_pose(mask_seg):
     total_y = 0.0
     total_z = 0.0
     num_points = len(mask_seg)
-    for point in mask_seg:
-        x, y, z = depth_array[point] # for every point in the seg mask inside the pcl, extract x, y, z
-        total_x += x
-        total_y += y
-        total_z += z
+
+    try:
+        for point in mask_seg:
+            x, y, z = depth_array[point] # for every point in the seg mask inside the pcl, extract x, y, z
+            total_x += x
+            total_y += y
+            total_z += z
+    except IndexError as e:
+        print(f"Error calculating person pose: {e}")
 
     average_x = (total_x / num_points) # - 0.5
     average_y = (total_y / num_points) # + 0.1
@@ -126,6 +130,7 @@ def detect():
 
     global counter
     global mask
+    global found
 
     img = rospy.wait_for_message('/xtion/rgb/image_raw', Image)
     counter = counter + 1
@@ -150,6 +155,9 @@ def detect():
         # update TF tree and broadcast transformation message
         if response.detected_objects:
             rospy.loginfo("DETECTION")
+
+            found = True
+
             for resp in response.detected_objects:
                 mask = resp.xyseg
 
@@ -169,6 +177,7 @@ def detect():
                 coord_publisher(x, y)  # send point to movement controller
         else:
             rospy.loginfo("NO DETECTION")
+            found = False
 
 
 # def check_if_reached_person():
@@ -221,7 +230,9 @@ def is_tiago_within_range():
     # Calculate the distance between Tiago's pose and the person's pose
     distance = math.sqrt((tiago_pose.point.x - person_pose.point.x) ** 2 + (tiago_pose.point.y - person_pose.point.y) ** 2)
 
-    radius = 1.0
+    radius = 0.5
+
+    print(f"Tiago {tiago_pose.point.x} {tiago_pose.point.y}, Person {person_pose.point.x} {person_pose.point.y}")
 
     # Check if the distance is less than or equal to the radius
     if distance <= radius:
@@ -234,15 +245,15 @@ def is_tiago_within_range():
 
 class Initial(smach.State):
     def __init__(self):
-        smach.State.__init__(self, outcomes=['outcome1'])
+        smach.State.__init__(self, outcomes=['start'])
 
     def execute(self, userdata):
         # TODO: voice activation?
-        return "outcome1"
+        return "start" # go following
 
 class Following(smach.State):
     def __init__(self):
-        smach.State.__init__(self, outcomes=['outcome1', 'outcome2'])
+        smach.State.__init__(self, outcomes=['reached_person', 'not_reached_person', 'lost_person'])
 
     def execute(self, userdata):
         rospy.loginfo('Executing following state')
@@ -250,26 +261,41 @@ class Following(smach.State):
 
         detect()
 
-        if mask:
+        if mask: # only progress if we detect something
             if is_tiago_within_range():
                 print("In front of person")
-                return 'outcome1'
+                return 'reached_person' # go idle
             else:
-                return 'outcome2'
+                return 'not_reached_person' # stay following
         else:
-            return 'outcome2'
+            return 'not_reached_person' # stay following
+
+        if not found:
+            return 'lost_person'
 
 class Idle(smach.State):
     def __init__(self):
-        smach.State.__init__(self, outcomes=['outcome1', 'outcome2'])
+        smach.State.__init__(self, outcomes=['person_moved', 'person_still'])
 
     def execute(self, userdata):
         rospy.loginfo('Executing idle state')
         # Go to following state
         if not is_tiago_within_range():
-            return 'outcome1'
+            return 'person_moved' # go following
         else:
-            return 'outcome2'
+            print("Staying Idle")
+            return 'person_still' # stay idle
+
+class Searching(smach.State):
+    def __init__(self):
+        smach.State.__init__(self, outcomes=['found_person', 'searching'])
+
+    def execute(self, userdata):
+        # perform search behaviour
+        if found:
+            return 'found_person'
+        else:
+            return 'searching'
 
 # Main function
 def start_state_machine():
@@ -279,9 +305,10 @@ def start_state_machine():
     # Open the container
     with sm:
         # Add states to the container
-        smach.StateMachine.add('INITIAL', Initial(), transitions={'outcome1':'FOLLOWING'})
-        smach.StateMachine.add('FOLLOWING', Following(), transitions={'outcome1':'IDLE', 'outcome2':'FOLLOWING'})
-        smach.StateMachine.add('IDLE', Idle(), transitions={'outcome1':'FOLLOWING', 'outcome2':'IDLE'})
+        smach.StateMachine.add('INITIAL', Initial(), transitions={'start':'FOLLOWING'})
+        smach.StateMachine.add('FOLLOWING', Following(), transitions={'reached_person':'IDLE', 'not_reached_person':'FOLLOWING', 'lost_person':'SEARCHING'})
+        smach.StateMachine.add('IDLE', Idle(), transitions={'person_moved':'FOLLOWING', 'person_still':'IDLE'})
+        smach.StateMachine.add('SEARCHING', Searching(), transitions={'found_person':'FOLLOWING', 'searching':'SEARCHING'})
 
     # Create and start the introspection server
     sis = smach_ros.IntrospectionServer('server_name', sm, '/SM_ROOT')
@@ -302,6 +329,7 @@ if __name__ == '__main__':
     tf_listener = tf2_ros.TransformListener(tfb)
 
     mask = []
+    found = False
     counter = 0
     start_state_machine()
 
