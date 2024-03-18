@@ -8,3 +8,5 @@ Features:
 - person following
 - person lock. Stays focused on person being followed when other people enter the field of view.
 - search behaviour when person leaves the field of view
+
+Built using ROS noetic.
