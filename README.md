@@ -1,4 +1,4 @@
-<h1>Person-follower using the Tiago robot.</h1> 
+<h1>Person-follower using the Tiago robot</h1> 
 
 Uses:
 - Yolov8 for human recognition
