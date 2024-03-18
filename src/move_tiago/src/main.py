@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import math
-import time
 
 import rospy
 import numpy as np
@@ -10,10 +9,8 @@ from sensor_msgs.msg import Image, PointCloud2
 from sensor_msgs import point_cloud2
 from lasr_vision_msgs.srv import YoloDetection, YoloDetectionRequest
 from geometry_msgs.msg import Point, PointStamped, PoseWithCovarianceStamped
-import tf2_geometry_msgs
 
 import tf2_ros
-import tf_conversions
 
 def get_tiago_pose():
 
@@ -103,6 +100,31 @@ def get_person_pose(mask_seg):
 
     return point_stamped
 
+def get_person_color(mask_seg):
+    # Extract color information from the point cloud
+    colors = []
+    pcl = rospy.wait_for_message('/xtion/depth_registered/points', PointCloud2)  # get point cloud
+
+    for p in point_cloud2.read_points(pcl, field_names="rgb", skip_nans=True):
+        color = (p[0] & 0xFF, (p[0] >> 8) & 0xFF, (p[0] >> 16) & 0xFF)
+        colors.append(color)
+
+    # Calculate the average color within the mask
+    total_r, total_g, total_b = 0, 0, 0
+    num_points = len(mask_seg)
+    for point_index in mask_seg:
+        color = colors[point_index]
+        total_r += color[0]
+        total_g += color[1]
+        total_b += color[2]
+
+    average_color = (
+        total_r / num_points,
+        total_g / num_points,
+        total_b / num_points
+    )
+
+    return average_color
 
 # move the person point out of the obstruction zone
 def make_point_accessible(person):
@@ -159,9 +181,12 @@ def detect():
             found = True
 
             for resp in response.detected_objects:
+
                 mask = resp.xyseg
+                colour = get_person_color(mask)
 
                 rospy.loginfo(f"Found {resp.name}")
+                print(f"Colour {colour}")
                 point = get_person_pose(mask)  # calc where person is
                 print(point)
                 final_point = make_point_accessible(point)
@@ -175,50 +200,11 @@ def detect():
                 # print(coord_publisher(point.x, point.y))
 
                 coord_publisher(x, y)  # send point to movement controller
+
         else:
             rospy.loginfo("NO DETECTION")
             found = False
 
-
-# def check_if_reached_person():
-#
-#     global mask
-#
-#     tiago_pose = get_tiago_pose()
-#
-#     person_point = calculate_person_point_and_transform(mask) # need to subscribe first for this to work
-#
-#     r = 1.2
-#
-#     x_low = round(person_point.point.x - r, 1)
-#     x_high = round(person_point.point.x + r, 1)
-#     y_low = round(person_point.point.y - r, 1)
-#     y_high = round(person_point.point.y + r, 1)
-#
-#     tx = round(tiago_pose.point.x, 1)
-#     ty = round(tiago_pose.point.y, 1)
-#
-#     print(f"tx {tx}, ty {ty}")
-#
-#     x_range = np.arange(x_low, x_high, 0.1)
-#     y_range = np.arange(y_low, y_high, 0.1)
-#
-#     print(x_range)
-#     print(y_range)
-#
-#     print(f"Person {person_point.point.x} {person_point.point.y}, Tiago {tiago_pose.point.x} {tiago_pose.point.y}")
-#
-#     if tiago_pose.point.y in np.arange(y_low, y_high):
-#         print("True y")
-#     else:
-#         print("False y")
-#
-#     if (tx in x_range) or (ty in y_range):
-#         rospy.loginfo("In range of person")
-#         return True
-#     else:
-#         rospy.loginfo("Not in range of person")
-#         return False
 
 def is_tiago_within_range():
 
