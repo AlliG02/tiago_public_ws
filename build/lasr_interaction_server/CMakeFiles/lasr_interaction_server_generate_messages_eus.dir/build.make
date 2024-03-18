@@ -60,15 +60,15 @@ CMakeFiles/lasr_interaction_server_generate_messages_eus: /home/k21066336/tiago_
 
 /home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/share/roseus/ros/lasr_interaction_server/srv/SpeechInteraction.l: /opt/ros/noetic/lib/geneus/gen_eus.py
 /home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/share/roseus/ros/lasr_interaction_server/srv/SpeechInteraction.l: /home/k21066336/tiago_public_ws/src/legacy/lasr_interaction_server/srv/SpeechInteraction.srv
-/home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/share/roseus/ros/lasr_interaction_server/srv/SpeechInteraction.l: /opt/ros/noetic/share/std_msgs/msg/String.msg
 /home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/share/roseus/ros/lasr_interaction_server/srv/SpeechInteraction.l: /opt/ros/noetic/share/std_msgs/msg/Bool.msg
+/home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/share/roseus/ros/lasr_interaction_server/srv/SpeechInteraction.l: /opt/ros/noetic/share/std_msgs/msg/String.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/k21066336/tiago_public_ws/build/lasr_interaction_server/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating EusLisp code from lasr_interaction_server/SpeechInteraction.srv"
 	catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/k21066336/tiago_public_ws/src/legacy/lasr_interaction_server/srv/SpeechInteraction.srv -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p lasr_interaction_server -o /home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/share/roseus/ros/lasr_interaction_server/srv
 
 /home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/share/roseus/ros/lasr_interaction_server/srv/TextInteraction.l: /opt/ros/noetic/lib/geneus/gen_eus.py
 /home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/share/roseus/ros/lasr_interaction_server/srv/TextInteraction.l: /home/k21066336/tiago_public_ws/src/legacy/lasr_interaction_server/srv/TextInteraction.srv
-/home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/share/roseus/ros/lasr_interaction_server/srv/TextInteraction.l: /opt/ros/noetic/share/std_msgs/msg/String.msg
 /home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/share/roseus/ros/lasr_interaction_server/srv/TextInteraction.l: /opt/ros/noetic/share/std_msgs/msg/Bool.msg
+/home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/share/roseus/ros/lasr_interaction_server/srv/TextInteraction.l: /opt/ros/noetic/share/std_msgs/msg/String.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/k21066336/tiago_public_ws/build/lasr_interaction_server/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating EusLisp code from lasr_interaction_server/TextInteraction.srv"
 	catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/k21066336/tiago_public_ws/src/legacy/lasr_interaction_server/srv/TextInteraction.srv -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p lasr_interaction_server -o /home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/share/roseus/ros/lasr_interaction_server/srv
 

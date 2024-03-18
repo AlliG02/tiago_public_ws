@@ -1,21 +1,23 @@
 Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
 Change Dir: /home/k21066336/tiago_public_ws/build/train_dataset_model/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_4a1bb/fast && /usr/bin/make -f CMakeFiles/cmTC_4a1bb.dir/build.make CMakeFiles/cmTC_4a1bb.dir/build
+Run Build Command(s):/usr/bin/make cmTC_91965/fast && make: Warning: File 'Makefile' has modification time 0.94 s in the future
+/usr/bin/make -f CMakeFiles/cmTC_91965.dir/build.make CMakeFiles/cmTC_91965.dir/build
 make[1]: Entering directory '/home/k21066336/tiago_public_ws/build/train_dataset_model/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_4a1bb.dir/src.c.o
-/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_4a1bb.dir/src.c.o   -c /home/k21066336/tiago_public_ws/build/train_dataset_model/CMakeFiles/CMakeTmp/src.c
-Linking C executable cmTC_4a1bb
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4a1bb.dir/link.txt --verbose=1
-/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    -rdynamic CMakeFiles/cmTC_4a1bb.dir/src.c.o  -o cmTC_4a1bb 
-/usr/bin/ld: CMakeFiles/cmTC_4a1bb.dir/src.c.o: in function `main':
+make[1]: Warning: File 'CMakeFiles/cmTC_91965.dir/flags.make' has modification time 0.93 s in the future
+Building C object CMakeFiles/cmTC_91965.dir/src.c.o
+/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_91965.dir/src.c.o   -c /home/k21066336/tiago_public_ws/build/train_dataset_model/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_91965
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_91965.dir/link.txt --verbose=1
+/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    -rdynamic CMakeFiles/cmTC_91965.dir/src.c.o  -o cmTC_91965 
+/usr/bin/ld: CMakeFiles/cmTC_91965.dir/src.c.o: in function `main':
 src.c:(.text+0x46): undefined reference to `pthread_create'
 /usr/bin/ld: src.c:(.text+0x52): undefined reference to `pthread_detach'
 /usr/bin/ld: src.c:(.text+0x63): undefined reference to `pthread_join'
 collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_4a1bb.dir/build.make:87: cmTC_4a1bb] Error 1
+make[1]: *** [CMakeFiles/cmTC_91965.dir/build.make:87: cmTC_91965] Error 1
 make[1]: Leaving directory '/home/k21066336/tiago_public_ws/build/train_dataset_model/CMakeFiles/CMakeTmp'
-make: *** [Makefile:121: cmTC_4a1bb/fast] Error 2
+make: *** [Makefile:121: cmTC_91965/fast] Error 2
 
 
 Source file was:
@@ -41,18 +43,20 @@ int main(void)
 Determining if the function pthread_create exists in the pthreads failed with the following output:
 Change Dir: /home/k21066336/tiago_public_ws/build/train_dataset_model/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_d18b8/fast && /usr/bin/make -f CMakeFiles/cmTC_d18b8.dir/build.make CMakeFiles/cmTC_d18b8.dir/build
+Run Build Command(s):/usr/bin/make cmTC_9e7ec/fast && make: Warning: File 'Makefile' has modification time 0.94 s in the future
+/usr/bin/make -f CMakeFiles/cmTC_9e7ec.dir/build.make CMakeFiles/cmTC_9e7ec.dir/build
 make[1]: Entering directory '/home/k21066336/tiago_public_ws/build/train_dataset_model/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_d18b8.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_d18b8.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
-Linking C executable cmTC_d18b8
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d18b8.dir/link.txt --verbose=1
-/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_d18b8.dir/CheckFunctionExists.c.o  -o cmTC_d18b8  -lpthreads 
+make[1]: Warning: File 'CMakeFiles/cmTC_9e7ec.dir/flags.make' has modification time 0.93 s in the future
+Building C object CMakeFiles/cmTC_9e7ec.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_9e7ec.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
+Linking C executable cmTC_9e7ec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9e7ec.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_9e7ec.dir/CheckFunctionExists.c.o  -o cmTC_9e7ec  -lpthreads 
 /usr/bin/ld: cannot find -lpthreads
 collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_d18b8.dir/build.make:87: cmTC_d18b8] Error 1
+make[1]: *** [CMakeFiles/cmTC_9e7ec.dir/build.make:87: cmTC_9e7ec] Error 1
 make[1]: Leaving directory '/home/k21066336/tiago_public_ws/build/train_dataset_model/CMakeFiles/CMakeTmp'
-make: *** [Makefile:121: cmTC_d18b8/fast] Error 2
+make: *** [Makefile:121: cmTC_9e7ec/fast] Error 2
 
 
 

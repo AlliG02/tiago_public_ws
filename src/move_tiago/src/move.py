@@ -5,7 +5,7 @@ from tiago_controllers import BaseController
 
 def callback(point):
 
-    # tiago cannot go to coord in obstacle area
+    # tiago cannot go to coord in cost map
 
     b = BaseController()
 

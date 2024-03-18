@@ -1,21 +1,23 @@
 Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
 Change Dir: /home/k21066336/tiago_public_ws/build/lasr_web_server/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_c2ca8/fast && /usr/bin/make -f CMakeFiles/cmTC_c2ca8.dir/build.make CMakeFiles/cmTC_c2ca8.dir/build
+Run Build Command(s):/usr/bin/make cmTC_3928e/fast && make: Warning: File 'Makefile' has modification time 0.93 s in the future
+/usr/bin/make -f CMakeFiles/cmTC_3928e.dir/build.make CMakeFiles/cmTC_3928e.dir/build
 make[1]: Entering directory '/home/k21066336/tiago_public_ws/build/lasr_web_server/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_c2ca8.dir/src.c.o
-/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_c2ca8.dir/src.c.o   -c /home/k21066336/tiago_public_ws/build/lasr_web_server/CMakeFiles/CMakeTmp/src.c
-Linking C executable cmTC_c2ca8
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c2ca8.dir/link.txt --verbose=1
-/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    -rdynamic CMakeFiles/cmTC_c2ca8.dir/src.c.o  -o cmTC_c2ca8 
-/usr/bin/ld: CMakeFiles/cmTC_c2ca8.dir/src.c.o: in function `main':
+make[1]: Warning: File 'CMakeFiles/cmTC_3928e.dir/flags.make' has modification time 0.93 s in the future
+Building C object CMakeFiles/cmTC_3928e.dir/src.c.o
+/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_3928e.dir/src.c.o   -c /home/k21066336/tiago_public_ws/build/lasr_web_server/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_3928e
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3928e.dir/link.txt --verbose=1
+/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    -rdynamic CMakeFiles/cmTC_3928e.dir/src.c.o  -o cmTC_3928e 
+/usr/bin/ld: CMakeFiles/cmTC_3928e.dir/src.c.o: in function `main':
 src.c:(.text+0x46): undefined reference to `pthread_create'
 /usr/bin/ld: src.c:(.text+0x52): undefined reference to `pthread_detach'
 /usr/bin/ld: src.c:(.text+0x63): undefined reference to `pthread_join'
 collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_c2ca8.dir/build.make:87: cmTC_c2ca8] Error 1
+make[1]: *** [CMakeFiles/cmTC_3928e.dir/build.make:87: cmTC_3928e] Error 1
 make[1]: Leaving directory '/home/k21066336/tiago_public_ws/build/lasr_web_server/CMakeFiles/CMakeTmp'
-make: *** [Makefile:121: cmTC_c2ca8/fast] Error 2
+make: *** [Makefile:121: cmTC_3928e/fast] Error 2
 
 
 Source file was:
@@ -41,18 +43,20 @@ int main(void)
 Determining if the function pthread_create exists in the pthreads failed with the following output:
 Change Dir: /home/k21066336/tiago_public_ws/build/lasr_web_server/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_a1f3f/fast && /usr/bin/make -f CMakeFiles/cmTC_a1f3f.dir/build.make CMakeFiles/cmTC_a1f3f.dir/build
+Run Build Command(s):/usr/bin/make cmTC_37a14/fast && make: Warning: File 'Makefile' has modification time 0.94 s in the future
+/usr/bin/make -f CMakeFiles/cmTC_37a14.dir/build.make CMakeFiles/cmTC_37a14.dir/build
 make[1]: Entering directory '/home/k21066336/tiago_public_ws/build/lasr_web_server/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_a1f3f.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_a1f3f.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
-Linking C executable cmTC_a1f3f
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a1f3f.dir/link.txt --verbose=1
-/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_a1f3f.dir/CheckFunctionExists.c.o  -o cmTC_a1f3f  -lpthreads 
+make[1]: Warning: File 'CMakeFiles/cmTC_37a14.dir/flags.make' has modification time 0.93 s in the future
+Building C object CMakeFiles/cmTC_37a14.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_37a14.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
+Linking C executable cmTC_37a14
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_37a14.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_37a14.dir/CheckFunctionExists.c.o  -o cmTC_37a14  -lpthreads 
 /usr/bin/ld: cannot find -lpthreads
 collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_a1f3f.dir/build.make:87: cmTC_a1f3f] Error 1
+make[1]: *** [CMakeFiles/cmTC_37a14.dir/build.make:87: cmTC_37a14] Error 1
 make[1]: Leaving directory '/home/k21066336/tiago_public_ws/build/lasr_web_server/CMakeFiles/CMakeTmp'
-make: *** [Makefile:121: cmTC_a1f3f/fast] Error 2
+make: *** [Makefile:121: cmTC_37a14/fast] Error 2
 
 
 

@@ -19,7 +19,7 @@ add_custom_target(lasr_object_detection_yolo_generate_messages ALL)
 
 get_filename_component(_filename "/home/k21066336/tiago_public_ws/src/legacy/lasr_object_detection_yolo/srv/YoloDetection.srv" NAME_WE)
 add_custom_target(_lasr_object_detection_yolo_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "lasr_object_detection_yolo" "/home/k21066336/tiago_public_ws/src/legacy/lasr_object_detection_yolo/srv/YoloDetection.srv" "std_msgs/Header:sensor_msgs/Image:lasr_vision_msgs/Detection"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "lasr_object_detection_yolo" "/home/k21066336/tiago_public_ws/src/legacy/lasr_object_detection_yolo/srv/YoloDetection.srv" "sensor_msgs/Image:std_msgs/Header:lasr_vision_msgs/Detection"
 )
 
 #
@@ -33,7 +33,7 @@ add_custom_target(_lasr_object_detection_yolo_generate_messages_check_deps_${_fi
 _generate_srv_cpp(lasr_object_detection_yolo
   "/home/k21066336/tiago_public_ws/src/legacy/lasr_object_detection_yolo/srv/YoloDetection.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg"
+  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/lasr_object_detection_yolo
 )
 
@@ -66,7 +66,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS lasr_object_detection_yolo_generate
 _generate_srv_eus(lasr_object_detection_yolo
   "/home/k21066336/tiago_public_ws/src/legacy/lasr_object_detection_yolo/srv/YoloDetection.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg"
+  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/lasr_object_detection_yolo
 )
 
@@ -99,7 +99,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS lasr_object_detection_yolo_generate
 _generate_srv_lisp(lasr_object_detection_yolo
   "/home/k21066336/tiago_public_ws/src/legacy/lasr_object_detection_yolo/srv/YoloDetection.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg"
+  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/lasr_object_detection_yolo
 )
 
@@ -132,7 +132,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS lasr_object_detection_yolo_generate
 _generate_srv_nodejs(lasr_object_detection_yolo
   "/home/k21066336/tiago_public_ws/src/legacy/lasr_object_detection_yolo/srv/YoloDetection.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg"
+  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/lasr_object_detection_yolo
 )
 
@@ -165,7 +165,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS lasr_object_detection_yolo_generate
 _generate_srv_py(lasr_object_detection_yolo
   "/home/k21066336/tiago_public_ws/src/legacy/lasr_object_detection_yolo/srv/YoloDetection.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg"
+  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/lasr_object_detection_yolo
 )
 

@@ -11,6 +11,7 @@ from lasr_vision_msgs.srv import YoloDetection, YoloDetectionRequest
 from geometry_msgs.msg import Point, PointStamped, PoseWithCovarianceStamped
 
 import tf2_ros
+from tf2_ros import TransformException
 
 def get_tiago_pose():
 
@@ -27,8 +28,8 @@ def get_tiago_pose():
     try:
         tiago_pose = tfb.transform(point_stamped, "map")
         # rospy.loginfo(f"Tiago pose {tiago_pose}")
-    except Exception:
-        rospy.loginfo("No transformation available")
+    except TransformException as e:
+        rospy.loginfo(f"No transformation available {e}")
 
     return tiago_pose
 
@@ -100,31 +101,31 @@ def get_person_pose(mask_seg):
 
     return point_stamped
 
-def get_person_color(mask_seg):
-    # Extract color information from the point cloud
-    colors = []
-    pcl = rospy.wait_for_message('/xtion/depth_registered/points', PointCloud2)  # get point cloud
-
-    for p in point_cloud2.read_points(pcl, field_names="rgb", skip_nans=True):
-        color = (p[0] & 0xFF, (p[0] >> 8) & 0xFF, (p[0] >> 16) & 0xFF)
-        colors.append(color)
-
-    # Calculate the average color within the mask
-    total_r, total_g, total_b = 0, 0, 0
-    num_points = len(mask_seg)
-    for point_index in mask_seg:
-        color = colors[point_index]
-        total_r += color[0]
-        total_g += color[1]
-        total_b += color[2]
-
-    average_color = (
-        total_r / num_points,
-        total_g / num_points,
-        total_b / num_points
-    )
-
-    return average_color
+# def get_person_color(mask_seg):
+#     # Extract color information from the point cloud
+#     colors = []
+#     pcl = rospy.wait_for_message('/xtion/depth_registered/points', PointCloud2)  # get point cloud
+#
+#     for p in point_cloud2.read_points(pcl, field_names="rgb", skip_nans=True):
+#         color = (int(p[0]) & 0xFF, (int(p[0]) >> 8) & 0xFF, (int(p[0]) >> 16) & 0xFF)
+#         colors.append(color)
+#
+#     # Calculate the average color within the mask
+#     total_r, total_g, total_b = 0, 0, 0
+#     num_points = len(mask_seg)
+#     for point_index in mask_seg:
+#         color = colors[point_index]
+#         total_r += color[0]
+#         total_g += color[1]
+#         total_b += color[2]
+#
+#     average_color = (
+#         total_r / num_points,
+#         total_g / num_points,
+#         total_b / num_points
+#     )
+#
+#     return average_color
 
 # move the person point out of the obstruction zone
 def make_point_accessible(person):
@@ -183,10 +184,10 @@ def detect():
             for resp in response.detected_objects:
 
                 mask = resp.xyseg
-                colour = get_person_color(mask)
+                # colour = get_person_color(mask)
 
                 rospy.loginfo(f"Found {resp.name}")
-                print(f"Colour {colour}")
+                # print(f"Colour {colour}")
                 point = get_person_pose(mask)  # calc where person is
                 print(point)
                 final_point = make_point_accessible(point)

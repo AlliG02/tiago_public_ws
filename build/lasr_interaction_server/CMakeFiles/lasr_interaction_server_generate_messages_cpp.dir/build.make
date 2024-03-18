@@ -59,8 +59,8 @@ CMakeFiles/lasr_interaction_server_generate_messages_cpp: /home/k21066336/tiago_
 
 /home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/include/lasr_interaction_server/SpeechInteraction.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
 /home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/include/lasr_interaction_server/SpeechInteraction.h: /home/k21066336/tiago_public_ws/src/legacy/lasr_interaction_server/srv/SpeechInteraction.srv
-/home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/include/lasr_interaction_server/SpeechInteraction.h: /opt/ros/noetic/share/std_msgs/msg/String.msg
 /home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/include/lasr_interaction_server/SpeechInteraction.h: /opt/ros/noetic/share/std_msgs/msg/Bool.msg
+/home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/include/lasr_interaction_server/SpeechInteraction.h: /opt/ros/noetic/share/std_msgs/msg/String.msg
 /home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/include/lasr_interaction_server/SpeechInteraction.h: /opt/ros/noetic/share/gencpp/msg.h.template
 /home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/include/lasr_interaction_server/SpeechInteraction.h: /opt/ros/noetic/share/gencpp/srv.h.template
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/k21066336/tiago_public_ws/build/lasr_interaction_server/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C++ code from lasr_interaction_server/SpeechInteraction.srv"
@@ -68,8 +68,8 @@ CMakeFiles/lasr_interaction_server_generate_messages_cpp: /home/k21066336/tiago_
 
 /home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/include/lasr_interaction_server/TextInteraction.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
 /home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/include/lasr_interaction_server/TextInteraction.h: /home/k21066336/tiago_public_ws/src/legacy/lasr_interaction_server/srv/TextInteraction.srv
-/home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/include/lasr_interaction_server/TextInteraction.h: /opt/ros/noetic/share/std_msgs/msg/String.msg
 /home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/include/lasr_interaction_server/TextInteraction.h: /opt/ros/noetic/share/std_msgs/msg/Bool.msg
+/home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/include/lasr_interaction_server/TextInteraction.h: /opt/ros/noetic/share/std_msgs/msg/String.msg
 /home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/include/lasr_interaction_server/TextInteraction.h: /opt/ros/noetic/share/gencpp/msg.h.template
 /home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/include/lasr_interaction_server/TextInteraction.h: /opt/ros/noetic/share/gencpp/srv.h.template
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/k21066336/tiago_public_ws/build/lasr_interaction_server/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating C++ code from lasr_interaction_server/TextInteraction.srv"
