@@ -19,12 +19,12 @@ add_custom_target(lasr_interaction_server_generate_messages ALL)
 
 get_filename_component(_filename "/home/k21066336/tiago_public_ws/src/legacy/lasr_interaction_server/srv/SpeechInteraction.srv" NAME_WE)
 add_custom_target(_lasr_interaction_server_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "lasr_interaction_server" "/home/k21066336/tiago_public_ws/src/legacy/lasr_interaction_server/srv/SpeechInteraction.srv" "std_msgs/Bool:std_msgs/String"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "lasr_interaction_server" "/home/k21066336/tiago_public_ws/src/legacy/lasr_interaction_server/srv/SpeechInteraction.srv" "std_msgs/String:std_msgs/Bool"
 )
 
 get_filename_component(_filename "/home/k21066336/tiago_public_ws/src/legacy/lasr_interaction_server/srv/TextInteraction.srv" NAME_WE)
 add_custom_target(_lasr_interaction_server_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "lasr_interaction_server" "/home/k21066336/tiago_public_ws/src/legacy/lasr_interaction_server/srv/TextInteraction.srv" "std_msgs/Bool:std_msgs/String"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "lasr_interaction_server" "/home/k21066336/tiago_public_ws/src/legacy/lasr_interaction_server/srv/TextInteraction.srv" "std_msgs/String:std_msgs/Bool"
 )
 
 #
@@ -38,13 +38,13 @@ add_custom_target(_lasr_interaction_server_generate_messages_check_deps_${_filen
 _generate_srv_cpp(lasr_interaction_server
   "/home/k21066336/tiago_public_ws/src/legacy/lasr_interaction_server/srv/SpeechInteraction.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Bool.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/String.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/String.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Bool.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/lasr_interaction_server
 )
 _generate_srv_cpp(lasr_interaction_server
   "/home/k21066336/tiago_public_ws/src/legacy/lasr_interaction_server/srv/TextInteraction.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Bool.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/String.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/String.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Bool.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/lasr_interaction_server
 )
 
@@ -79,13 +79,13 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS lasr_interaction_server_generate_me
 _generate_srv_eus(lasr_interaction_server
   "/home/k21066336/tiago_public_ws/src/legacy/lasr_interaction_server/srv/SpeechInteraction.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Bool.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/String.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/String.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Bool.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/lasr_interaction_server
 )
 _generate_srv_eus(lasr_interaction_server
   "/home/k21066336/tiago_public_ws/src/legacy/lasr_interaction_server/srv/TextInteraction.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Bool.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/String.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/String.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Bool.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/lasr_interaction_server
 )
 
@@ -120,13 +120,13 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS lasr_interaction_server_generate_me
 _generate_srv_lisp(lasr_interaction_server
   "/home/k21066336/tiago_public_ws/src/legacy/lasr_interaction_server/srv/SpeechInteraction.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Bool.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/String.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/String.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Bool.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/lasr_interaction_server
 )
 _generate_srv_lisp(lasr_interaction_server
   "/home/k21066336/tiago_public_ws/src/legacy/lasr_interaction_server/srv/TextInteraction.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Bool.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/String.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/String.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Bool.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/lasr_interaction_server
 )
 
@@ -161,13 +161,13 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS lasr_interaction_server_generate_me
 _generate_srv_nodejs(lasr_interaction_server
   "/home/k21066336/tiago_public_ws/src/legacy/lasr_interaction_server/srv/SpeechInteraction.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Bool.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/String.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/String.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Bool.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/lasr_interaction_server
 )
 _generate_srv_nodejs(lasr_interaction_server
   "/home/k21066336/tiago_public_ws/src/legacy/lasr_interaction_server/srv/TextInteraction.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Bool.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/String.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/String.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Bool.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/lasr_interaction_server
 )
 
@@ -202,13 +202,13 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS lasr_interaction_server_generate_me
 _generate_srv_py(lasr_interaction_server
   "/home/k21066336/tiago_public_ws/src/legacy/lasr_interaction_server/srv/SpeechInteraction.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Bool.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/String.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/String.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Bool.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/lasr_interaction_server
 )
 _generate_srv_py(lasr_interaction_server
   "/home/k21066336/tiago_public_ws/src/legacy/lasr_interaction_server/srv/TextInteraction.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Bool.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/String.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/String.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Bool.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/lasr_interaction_server
 )
 

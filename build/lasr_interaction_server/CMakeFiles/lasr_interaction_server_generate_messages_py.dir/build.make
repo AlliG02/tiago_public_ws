@@ -60,15 +60,15 @@ CMakeFiles/lasr_interaction_server_generate_messages_py: /home/k21066336/tiago_p
 
 /home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/lib/python3/dist-packages/lasr_interaction_server/srv/_SpeechInteraction.py: /opt/ros/noetic/lib/genpy/gensrv_py.py
 /home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/lib/python3/dist-packages/lasr_interaction_server/srv/_SpeechInteraction.py: /home/k21066336/tiago_public_ws/src/legacy/lasr_interaction_server/srv/SpeechInteraction.srv
-/home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/lib/python3/dist-packages/lasr_interaction_server/srv/_SpeechInteraction.py: /opt/ros/noetic/share/std_msgs/msg/Bool.msg
 /home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/lib/python3/dist-packages/lasr_interaction_server/srv/_SpeechInteraction.py: /opt/ros/noetic/share/std_msgs/msg/String.msg
+/home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/lib/python3/dist-packages/lasr_interaction_server/srv/_SpeechInteraction.py: /opt/ros/noetic/share/std_msgs/msg/Bool.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/k21066336/tiago_public_ws/build/lasr_interaction_server/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Python code from SRV lasr_interaction_server/SpeechInteraction"
 	catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/gensrv_py.py /home/k21066336/tiago_public_ws/src/legacy/lasr_interaction_server/srv/SpeechInteraction.srv -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p lasr_interaction_server -o /home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/lib/python3/dist-packages/lasr_interaction_server/srv
 
 /home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/lib/python3/dist-packages/lasr_interaction_server/srv/_TextInteraction.py: /opt/ros/noetic/lib/genpy/gensrv_py.py
 /home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/lib/python3/dist-packages/lasr_interaction_server/srv/_TextInteraction.py: /home/k21066336/tiago_public_ws/src/legacy/lasr_interaction_server/srv/TextInteraction.srv
-/home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/lib/python3/dist-packages/lasr_interaction_server/srv/_TextInteraction.py: /opt/ros/noetic/share/std_msgs/msg/Bool.msg
 /home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/lib/python3/dist-packages/lasr_interaction_server/srv/_TextInteraction.py: /opt/ros/noetic/share/std_msgs/msg/String.msg
+/home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/lib/python3/dist-packages/lasr_interaction_server/srv/_TextInteraction.py: /opt/ros/noetic/share/std_msgs/msg/Bool.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/k21066336/tiago_public_ws/build/lasr_interaction_server/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python code from SRV lasr_interaction_server/TextInteraction"
 	catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/gensrv_py.py /home/k21066336/tiago_public_ws/src/legacy/lasr_interaction_server/srv/TextInteraction.srv -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p lasr_interaction_server -o /home/k21066336/tiago_public_ws/devel/.private/lasr_interaction_server/lib/python3/dist-packages/lasr_interaction_server/srv
 

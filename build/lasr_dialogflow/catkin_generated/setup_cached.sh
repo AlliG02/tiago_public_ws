@@ -9,7 +9,6 @@
 # modified environment variables
 export CMAKE_PREFIX_PATH="/home/k21066336/tiago_public_ws/devel/.private/lasr_dialogflow:$CMAKE_PREFIX_PATH"
 export LD_LIBRARY_PATH="/home/k21066336/tiago_public_ws/devel/.private/lasr_dialogflow/lib:$LD_LIBRARY_PATH"
-export PKG_CONFIG_PATH="/home/k21066336/tiago_public_ws/devel/.private/lasr_dialogflow/lib/pkgconfig:$PKG_CONFIG_PATH"
 export PWD='/home/k21066336/tiago_public_ws/build/lasr_dialogflow'
 export PYTHONPATH="/home/k21066336/tiago_public_ws/devel/.private/lasr_dialogflow/lib/python3/dist-packages:$PYTHONPATH"
 export ROSLISP_PACKAGE_DIRECTORIES="/home/k21066336/tiago_public_ws/devel/.private/lasr_dialogflow/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"

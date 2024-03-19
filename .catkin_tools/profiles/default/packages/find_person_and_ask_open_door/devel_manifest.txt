@@ -1,6 +1,6 @@
 legacy/find_person_and_ask_open_door
 /home/k21066336/tiago_public_ws/devel/.private/find_person_and_ask_open_door/cmake.lock /home/k21066336/tiago_public_ws/devel/./cmake.lock
-/home/k21066336/tiago_public_ws/devel/.private/find_person_and_ask_open_door/lib/python3/dist-packages/find_person_and_ask_open_door/__init__.py /home/k21066336/tiago_public_ws/devel/lib/python3/dist-packages/find_person_and_ask_open_door/__init__.py
-/home/k21066336/tiago_public_ws/devel/.private/find_person_and_ask_open_door/lib/pkgconfig/find_person_and_ask_open_door.pc /home/k21066336/tiago_public_ws/devel/lib/pkgconfig/find_person_and_ask_open_door.pc
 /home/k21066336/tiago_public_ws/devel/.private/find_person_and_ask_open_door/share/find_person_and_ask_open_door/cmake/find_person_and_ask_open_doorConfig.cmake /home/k21066336/tiago_public_ws/devel/share/find_person_and_ask_open_door/cmake/find_person_and_ask_open_doorConfig.cmake
 /home/k21066336/tiago_public_ws/devel/.private/find_person_and_ask_open_door/share/find_person_and_ask_open_door/cmake/find_person_and_ask_open_doorConfig-version.cmake /home/k21066336/tiago_public_ws/devel/share/find_person_and_ask_open_door/cmake/find_person_and_ask_open_doorConfig-version.cmake
+/home/k21066336/tiago_public_ws/devel/.private/find_person_and_ask_open_door/lib/python3/dist-packages/find_person_and_ask_open_door/__init__.py /home/k21066336/tiago_public_ws/devel/lib/python3/dist-packages/find_person_and_ask_open_door/__init__.py
+/home/k21066336/tiago_public_ws/devel/.private/find_person_and_ask_open_door/lib/pkgconfig/find_person_and_ask_open_door.pc /home/k21066336/tiago_public_ws/devel/lib/pkgconfig/find_person_and_ask_open_door.pc

@@ -19,22 +19,22 @@ add_custom_target(pcl_segmentation_generate_messages ALL)
 
 get_filename_component(_filename "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/SegmentCuboid.srv" NAME_WE)
 add_custom_target(_pcl_segmentation_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "pcl_segmentation" "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/SegmentCuboid.srv" "sensor_msgs/PointCloud2:geometry_msgs/Point:std_msgs/Header:sensor_msgs/PointField"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "pcl_segmentation" "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/SegmentCuboid.srv" "std_msgs/Header:geometry_msgs/Point:sensor_msgs/PointField:sensor_msgs/PointCloud2"
 )
 
 get_filename_component(_filename "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/SegmentBB.srv" NAME_WE)
 add_custom_target(_pcl_segmentation_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "pcl_segmentation" "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/SegmentBB.srv" "sensor_msgs/PointCloud2:std_msgs/Header:sensor_msgs/PointField"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "pcl_segmentation" "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/SegmentBB.srv" "std_msgs/Header:sensor_msgs/PointField:sensor_msgs/PointCloud2"
 )
 
 get_filename_component(_filename "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/Centroid.srv" NAME_WE)
 add_custom_target(_pcl_segmentation_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "pcl_segmentation" "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/Centroid.srv" "geometry_msgs/Point:sensor_msgs/PointCloud2:sensor_msgs/PointField:std_msgs/Header:geometry_msgs/PointStamped"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "pcl_segmentation" "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/Centroid.srv" "geometry_msgs/PointStamped:geometry_msgs/Point:sensor_msgs/PointField:std_msgs/Header:sensor_msgs/PointCloud2"
 )
 
 get_filename_component(_filename "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/MaskFromCuboid.srv" NAME_WE)
 add_custom_target(_pcl_segmentation_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "pcl_segmentation" "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/MaskFromCuboid.srv" "geometry_msgs/Point:sensor_msgs/PointCloud2:sensor_msgs/Image:sensor_msgs/PointField:std_msgs/Header"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "pcl_segmentation" "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/MaskFromCuboid.srv" "sensor_msgs/Image:geometry_msgs/Point:sensor_msgs/PointField:std_msgs/Header:sensor_msgs/PointCloud2"
 )
 
 #
@@ -48,25 +48,25 @@ add_custom_target(_pcl_segmentation_generate_messages_check_deps_${_filename}
 _generate_srv_cpp(pcl_segmentation
   "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/SegmentCuboid.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/pcl_segmentation
 )
 _generate_srv_cpp(pcl_segmentation
   "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/SegmentBB.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/pcl_segmentation
 )
 _generate_srv_cpp(pcl_segmentation
   "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/Centroid.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PointStamped.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PointStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/pcl_segmentation
 )
 _generate_srv_cpp(pcl_segmentation
   "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/MaskFromCuboid.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/pcl_segmentation
 )
 
@@ -105,25 +105,25 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS pcl_segmentation_generate_messages_
 _generate_srv_eus(pcl_segmentation
   "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/SegmentCuboid.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/pcl_segmentation
 )
 _generate_srv_eus(pcl_segmentation
   "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/SegmentBB.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/pcl_segmentation
 )
 _generate_srv_eus(pcl_segmentation
   "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/Centroid.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PointStamped.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PointStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/pcl_segmentation
 )
 _generate_srv_eus(pcl_segmentation
   "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/MaskFromCuboid.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/pcl_segmentation
 )
 
@@ -162,25 +162,25 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS pcl_segmentation_generate_messages_
 _generate_srv_lisp(pcl_segmentation
   "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/SegmentCuboid.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/pcl_segmentation
 )
 _generate_srv_lisp(pcl_segmentation
   "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/SegmentBB.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/pcl_segmentation
 )
 _generate_srv_lisp(pcl_segmentation
   "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/Centroid.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PointStamped.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PointStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/pcl_segmentation
 )
 _generate_srv_lisp(pcl_segmentation
   "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/MaskFromCuboid.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/pcl_segmentation
 )
 
@@ -219,25 +219,25 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS pcl_segmentation_generate_messages_
 _generate_srv_nodejs(pcl_segmentation
   "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/SegmentCuboid.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/pcl_segmentation
 )
 _generate_srv_nodejs(pcl_segmentation
   "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/SegmentBB.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/pcl_segmentation
 )
 _generate_srv_nodejs(pcl_segmentation
   "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/Centroid.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PointStamped.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PointStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/pcl_segmentation
 )
 _generate_srv_nodejs(pcl_segmentation
   "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/MaskFromCuboid.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/pcl_segmentation
 )
 
@@ -276,25 +276,25 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS pcl_segmentation_generate_messages_
 _generate_srv_py(pcl_segmentation
   "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/SegmentCuboid.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/pcl_segmentation
 )
 _generate_srv_py(pcl_segmentation
   "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/SegmentBB.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/pcl_segmentation
 )
 _generate_srv_py(pcl_segmentation
   "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/Centroid.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PointStamped.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PointStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/pcl_segmentation
 )
 _generate_srv_py(pcl_segmentation
   "/home/k21066336/tiago_public_ws/src/legacy/pcl_segmentation/srv/MaskFromCuboid.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointField.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/PointCloud2.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/pcl_segmentation
 )
 

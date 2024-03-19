@@ -19,7 +19,7 @@ add_custom_target(face_detection_generate_messages ALL)
 
 get_filename_component(_filename "/home/k21066336/tiago_public_ws/src/legacy/face_detection/srv/FaceDetection.srv" NAME_WE)
 add_custom_target(_face_detection_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "face_detection" "/home/k21066336/tiago_public_ws/src/legacy/face_detection/srv/FaceDetection.srv" "sensor_msgs/Image:std_msgs/Header:lasr_vision_msgs/Detection"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "face_detection" "/home/k21066336/tiago_public_ws/src/legacy/face_detection/srv/FaceDetection.srv" "std_msgs/Header:lasr_vision_msgs/Detection:sensor_msgs/Image"
 )
 
 #
@@ -33,7 +33,7 @@ add_custom_target(_face_detection_generate_messages_check_deps_${_filename}
 _generate_srv_cpp(face_detection
   "/home/k21066336/tiago_public_ws/src/legacy/face_detection/srv/FaceDetection.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/face_detection
 )
 
@@ -66,7 +66,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS face_detection_generate_messages_cp
 _generate_srv_eus(face_detection
   "/home/k21066336/tiago_public_ws/src/legacy/face_detection/srv/FaceDetection.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/face_detection
 )
 
@@ -99,7 +99,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS face_detection_generate_messages_eu
 _generate_srv_lisp(face_detection
   "/home/k21066336/tiago_public_ws/src/legacy/face_detection/srv/FaceDetection.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/face_detection
 )
 
@@ -132,7 +132,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS face_detection_generate_messages_li
 _generate_srv_nodejs(face_detection
   "/home/k21066336/tiago_public_ws/src/legacy/face_detection/srv/FaceDetection.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/face_detection
 )
 
@@ -165,7 +165,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS face_detection_generate_messages_no
 _generate_srv_py(face_detection
   "/home/k21066336/tiago_public_ws/src/legacy/face_detection/srv/FaceDetection.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/k21066336/tiago_public_ws/src/lasr_vision_msgs/msg/Detection.msg;/opt/ros/noetic/share/sensor_msgs/cmake/../msg/Image.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/face_detection
 )
 
