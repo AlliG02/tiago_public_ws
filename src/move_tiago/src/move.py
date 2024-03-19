@@ -17,7 +17,7 @@ def callback(point):
     dest.position.z = 0.0
     dest.orientation.w = 1.0  # Assuming no rotation
 
-    # b.sync_to_pose(dest)
+    b.sync_to_pose(dest)
 
 
 if __name__ == "__main__":

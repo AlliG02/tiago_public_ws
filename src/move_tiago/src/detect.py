@@ -21,7 +21,7 @@ class Detect:
         self.detect_service = rospy.ServiceProxy('/yolov8/detect', YoloDetection)  # create service proxy
         self.tfb = tf2_ros.Buffer()
         self.tf_listener = tf2_ros.TransformListener(self.tfb)
-
+        self.person_colour = ''
 
     def get_tiago_pose(self):
 
@@ -177,9 +177,6 @@ class Detect:
         img = rospy.wait_for_message('/xtion/rgb/image_raw', Image)
         self.counter += 1
 
-        x = 0
-        y = 0
-
         if self.counter % 10 == 0:
             # instantiate the service request
             request = YoloDetectionRequest()
@@ -207,15 +204,19 @@ class Detect:
                     # print(point)
                     final_point = self.make_point_accessible(point)
                     print(final_point)
-                    x = final_point.x  # - 0.76 works for movement along the x axis
+                    x = final_point.x
                     y = final_point.y
-                    # coord_publisher(point.x, point.y)
-                    # coord_publisher(1.45, 0.02) # hard coded test case
-                    # publish average x and y to coordinates
 
-                    # print(coord_publisher(point.x, point.y))
+                    # only send coords if we are following the same person
 
-                    self.coord_publisher(x, y)  # send point to movement controller
+                    if self.person_colour == '':
+                        self.person_colour == colour
+                        self.coord_publisher(x, y)
+                    elif colour == self.person_colour:
+                        self.coord_publisher(x, y)
+                    else:
+                        pass
+
 
             else:
                 rospy.loginfo("NO DETECTION")
