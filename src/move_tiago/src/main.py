@@ -10,7 +10,6 @@ class Initial(smach.State):
         smach.State.__init__(self, outcomes=['start'])
 
     def execute(self, userdata):
-        # TODO: voice activation?
         return "start" # go following
 
 class Following(smach.State):
@@ -32,8 +31,8 @@ class Following(smach.State):
         else:
             return 'not_reached_person' # stay following
 
-        if not found:
-            return 'lost_person'
+        # if not d.found:
+        #     return 'lost_person'
 
 class Idle(smach.State):
     def __init__(self):
@@ -53,10 +52,10 @@ class Searching(smach.State):
         smach.State.__init__(self, outcomes=['found_person', 'searching'])
 
     def execute(self, userdata):
-        # perform search behaviour
         if d.found:
             return 'found_person'
         else:
+            # perform search behaviour
             return 'searching'
 
 # Main function

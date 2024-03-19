@@ -1,3 +1,5 @@
+import struct
+
 import rospy
 import numpy as np
 import math
@@ -16,14 +18,13 @@ class Detect:
         self.counter = 0
         self.mask = []
         self.found = False
-        self.detect_service = rospy.ServiceProxy('/yolov8/detect', YoloDetection)     # create service proxy
+        self.detect_service = rospy.ServiceProxy('/yolov8/detect', YoloDetection)  # create service proxy
         self.tfb = tf2_ros.Buffer()
         self.tf_listener = tf2_ros.TransformListener(self.tfb)
 
 
     def get_tiago_pose(self):
 
-        # get current pose of tiago
         tp = rospy.wait_for_message("/robot_pose", PoseWithCovarianceStamped)
 
         point = Point(x=tp.pose.pose.position.x, y=tp.pose.pose.position.y, z=tp.pose.pose.position.z)
@@ -35,45 +36,37 @@ class Detect:
 
         try:
             tiago_pose = self.tfb.transform(point_stamped, "map")
-            rospy.loginfo(f"Tiago pose {tiago_pose}")
+            # rospy.loginfo(f"Tiago pose {tiago_pose}")
         except TransformException as e:
             rospy.loginfo(f"No transformation available {e}")
 
         return tiago_pose
 
-    # publish detected coordinates to 'coordinates' topic
+
     def coord_publisher(self, x, y):
-        # Initialize the ROS node
-        # rospy.init_node('coordinate_publisher', anonymous=True)
 
         # Create a publisher with topic name 'coordinates' and message type 'Point'
         pub = rospy.Publisher('coordinates', Point, queue_size=10)
 
-        # Set the rate at which to publish (in Hz)
         rate = rospy.Rate(1)  # 1 Hz
 
-        # Create a Point message
         point_msg = Point()
 
-        # Set the x and y coordinates
         point_msg.x = x
         point_msg.y = y
 
-        # Publish the Point message
         pub.publish(point_msg)
 
-        # Print the published coordinates
         rospy.loginfo("Published coordinates: x = %.2f, y = %.2f", x, y)
 
-        # Sleep to maintain the desired publishing rate
         rate.sleep()
 
     # calculate the point of the person
     def get_person_pose(self, mask_seg):
 
-        pcl = rospy.wait_for_message('/xtion/depth_registered/points', PointCloud2) # get point cloud
+        pcl = rospy.wait_for_message('/xtion/depth_registered/points', PointCloud2)  # get point cloud
         # print(pcl.header.frame_id) # frame of the point cloud
-        depth_data = point_cloud2.read_points(pcl, field_names=("x", "y", "z"), skip_nans=True) # extract x, y, z from points
+        depth_data = point_cloud2.read_points(pcl, field_names=("x", "y", "z"), skip_nans=True)  # extract x, y, z from points
         depth_array = np.array(list(depth_data))
 
         total_x = 0.0
@@ -83,15 +76,15 @@ class Detect:
 
         try:
             for point in mask_seg:
-                x, y, z = depth_array[point] # for every point in the seg mask inside the pcl, extract x, y, z
+                x, y, z = depth_array[point]  # for every point in the seg mask inside the pcl, extract x, y, z
                 total_x += x
                 total_y += y
                 total_z += z
         except IndexError as e:
             print(f"Error calculating person pose: {e}")
 
-        average_x = (total_x / num_points) # - 0.5
-        average_y = (total_y / num_points) # + 0.1
+        average_x = (total_x / num_points)  # - 0.5
+        average_y = (total_y / num_points)  # + 0.1
         average_z = total_z / num_points
 
         point = Point(x=average_x, y=average_y, z=average_z)
@@ -108,40 +101,62 @@ class Detect:
             pass
 
         return point_stamped
-    #
-    # def get_person_color(mask_seg):
-    #     # Extract color information from the point cloud
-    #     colors = []
-    #     pcl = rospy.wait_for_message('/xtion/depth_registered/points', PointCloud2)  # get point cloud
-    #
-    #     for p in point_cloud2.read_points(pcl, field_names="rgb", skip_nans=True):
-    #         color = (int(p[0]) & 0xFF, (int(p[0]) >> 8) & 0xFF, (int(p[0]) >> 16) & 0xFF)
-    #         colors.append(color)
-    #
-    #     # Calculate the average color within the mask
-    #     total_r, total_g, total_b = 0, 0, 0
-    #     num_points = len(mask_seg)
-    #     for point_index in mask_seg:
-    #         color = colors[point_index]
-    #         total_r += color[0]
-    #         total_g += color[1]
-    #         total_b += color[2]
-    #
-    #     average_color = (
-    #         total_r / num_points,
-    #         total_g / num_points,
-    #         total_b / num_points
-    #     )
-    #
-    #     return average_color
+
+    # Returns average colour of person. Takes forever.
+    def get_person_colour(self, mask_seg):
+
+        pcl = rospy.wait_for_message('/xtion/depth_registered/points', PointCloud2)
+
+        sum_r = sum_g = sum_b = count = 0.0
+        # Calculate average rgb of all points in pcl
+        for point in point_cloud2.read_points(pcl, field_names=("x", "y", "z", "rgb"), skip_nans=True):
+        # Extract rgb values from each point
+            r, g, b = struct.unpack('I', struct.pack('f', point[3]))[0] >> 16 & 0xff, \
+                      struct.unpack('I', struct.pack('f', point[3]))[0] >> 8 & 0xff, \
+                      struct.unpack('I', struct.pack('f', point[3]))[0] & 0xff
+
+            sum_r += r
+            sum_g += g
+            sum_b += b
+            count += 1
+
+        average_r = sum_r/count
+        average_g = sum_g/count
+        average_b = sum_b/count
+
+        colour_ranges = {
+            'red': ((200, 0, 0), (255, 100, 100)),
+            'green': ((0, 150, 0), (100, 255, 100)),
+            'blue': ((0, 0, 150), (100, 100, 255)),
+            'yellow': ((200, 200, 0), (255, 255, 100)),
+            'orange': ((200, 100, 0), (255, 150, 100)),
+            'purple': ((100, 0, 100), (150, 50, 150)),
+            'pink': ((255, 100, 200), (255, 150, 255)),
+            'cyan': ((0, 200, 200), (100, 255, 255)),
+            'brown': ((100, 50, 0), (150, 100, 50)),
+            'white': ((200, 200, 200), (255, 255, 255)),
+            'black': ((0, 0, 0), (50, 50, 50)),
+            # Add more for better accuracy
+        }
+
+        # Find the closest colour that matches calculated rgb values
+        closest_colour = None
+        min_distance = float('inf')
+        for colour, (lower_bound, upper_bound) in colour_ranges.items():
+            lower_distance = np.linalg.norm(np.array(lower_bound) - np.array([average_r, average_g, average_b]))
+            upper_distance = np.linalg.norm(np.array(upper_bound) - np.array([average_r, average_g, average_b]))
+            distance = min(lower_distance, upper_distance)
+            if distance < min_distance:
+                min_distance = distance
+                closest_colour = colour
+
+        return closest_colour
 
     # move the person point out of the obstruction zone
     def make_point_accessible(self, person):
 
         # get current pose of tiago
         tiago_pose = self.get_tiago_pose()
-
-        # move point out of obstruction zone
 
         distance_x = abs(tiago_pose.point.x - person.point.x)
         distance_y = abs(tiago_pose.point.y - person.point.y)
@@ -172,28 +187,24 @@ class Detect:
             request.dataset = "yolov8n-seg.pt"  # YOLOv8 model, auto-downloads
             request.confidence = 0.5  # minimum confidence to include in results
             request.nms = 0.3  # coord_publisher(point.x, point.y)n maximal supression
-            # fill in service fields
 
             # send request
             response = self.detect_service(request)
 
-            # output detection information to terminal
-            # send detected coords to detect topic
-            # update TF tree and broadcast transformation message
             if response.detected_objects:
                 rospy.loginfo("DETECTION")
 
-                found = True
+                self.found = True
 
                 for resp in response.detected_objects:
 
                     self.mask = resp.xyseg
-                    # colour = get_person_color(mask)
+                    colour = self.get_person_colour(self.mask)
 
                     rospy.loginfo(f"Found {resp.name}")
-                    # print(f"Colour {colour}")
+                    print(f"Colour {colour}")
                     point = self.get_person_pose(self.mask)  # calc where person is
-                    print(point)
+                    # print(point)
                     final_point = self.make_point_accessible(point)
                     print(final_point)
                     x = final_point.x  # - 0.76 works for movement along the x axis
@@ -208,7 +219,7 @@ class Detect:
 
             else:
                 rospy.loginfo("NO DETECTION")
-                found = False
+                self.found = False
 
     def is_tiago_within_range(self):
 
@@ -221,7 +232,7 @@ class Detect:
 
         radius = 0.5
 
-        print(f"Tiago {tiago_pose.point.x} {tiago_pose.point.y}, Person {person_pose.point.x} {person_pose.point.y}")
+        # print(f"Tiago {tiago_pose.point.x} {tiago_pose.point.y}, Person {person_pose.point.x} {person_pose.point.y}")
 
         # Check if the distance is less than or equal to the radius
         if distance <= radius:
