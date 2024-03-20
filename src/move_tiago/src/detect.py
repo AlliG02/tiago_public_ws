@@ -110,6 +110,7 @@ class Detect:
 
     # Returns average colour of person. Takes forever.
     # Make sure person is FACING tiago. Reduced PCL data makes this function less accurate
+    # TODO: fix this
     def get_person_colour(self, mask_seg):
 
         pcl = rospy.wait_for_message('/xtion/depth_registered/points', PointCloud2)
@@ -131,7 +132,7 @@ class Detect:
         average_g = sum_g/count
         average_b = sum_b/count
 
-        # print(average_r, average_g, average_b)
+        print(average_r, average_g, average_b)
 
         colour_ranges = {
             'red': ((200, 0, 0), (255, 100, 100)),

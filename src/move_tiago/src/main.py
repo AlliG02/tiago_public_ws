@@ -3,8 +3,6 @@ import rospy
 import smach
 import smach_ros
 
-import threading
-
 from detect import Detect
 from move import Move
 
