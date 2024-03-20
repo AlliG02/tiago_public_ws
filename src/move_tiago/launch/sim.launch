@@ -11,5 +11,6 @@
         <arg name="world" value="$(arg world)"/>
     </include>
 
+   <!-- start yolo service -->
    <node pkg="lasr_vision_yolov8" name="service" type="service" output="screen"/>
 </launch>

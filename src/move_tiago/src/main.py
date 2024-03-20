@@ -10,7 +10,8 @@ class Initial(smach.State):
         smach.State.__init__(self, outcomes=['start'])
 
     def execute(self, userdata):
-        return "start" # go following
+        # go following
+        return "start"
 
 class Following(smach.State):
     def __init__(self):
@@ -21,15 +22,18 @@ class Following(smach.State):
         # All follow logic
 
         d.detect()
-
-        if d.mask: # only progress if we detect something
+        # only progress if we detect something
+        if d.mask:
             if d.is_tiago_within_range():
                 print("In front of person")
-                return 'reached_person' # go idle
+                # go idle
+                return 'reached_person'
             else:
-                return 'not_reached_person' # stay following
+                # stay following
+                return 'not_reached_person'
         else:
-            return 'not_reached_person' # stay following
+            # stay following
+            return 'not_reached_person'
 
         # if not d.found:
         #     return 'lost_person'
@@ -42,10 +46,12 @@ class Idle(smach.State):
         rospy.loginfo('Executing idle state')
         # Go to following state
         if not d.is_tiago_within_range():
-            return 'person_moved' # go following
+            # go following
+            return 'person_moved'
         else:
             print("Staying Idle")
-            return 'person_still' # stay idle
+            # stay idle
+            return 'person_still'
 
 class Searching(smach.State):
     def __init__(self):

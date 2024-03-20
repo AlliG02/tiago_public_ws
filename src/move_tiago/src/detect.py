@@ -18,10 +18,11 @@ class Detect:
         self.counter = 0
         self.mask = []
         self.found = False
-        self.detect_service = rospy.ServiceProxy('/yolov8/detect', YoloDetection)  # create service proxy
+        # create service proxy
+        self.detect_service = rospy.ServiceProxy('/yolov8/detect', YoloDetection)
         self.tfb = tf2_ros.Buffer()
         self.tf_listener = tf2_ros.TransformListener(self.tfb)
-        self.person_colour = ''
+        self.person_colour = None
 
     def get_tiago_pose(self):
 
@@ -64,9 +65,11 @@ class Detect:
     # calculate the point of the person
     def get_person_pose(self, mask_seg):
 
-        pcl = rospy.wait_for_message('/xtion/depth_registered/points', PointCloud2)  # get point cloud
+        # get point cloud
+        pcl = rospy.wait_for_message('/xtion/depth_registered/points', PointCloud2)
         # print(pcl.header.frame_id) # frame of the point cloud
-        depth_data = point_cloud2.read_points(pcl, field_names=("x", "y", "z"), skip_nans=True)  # extract x, y, z from points
+        # extract x, y, z from points
+        depth_data = point_cloud2.read_points(pcl, field_names=("x", "y", "z"), skip_nans=True)
         depth_array = np.array(list(depth_data))
 
         total_x = 0.0
@@ -76,7 +79,8 @@ class Detect:
 
         try:
             for point in mask_seg:
-                x, y, z = depth_array[point]  # for every point in the seg mask inside the pcl, extract x, y, z
+                # for every point in the seg mask inside the pcl, extract x, y, z
+                x, y, z = depth_array[point]
                 total_x += x
                 total_y += y
                 total_z += z
@@ -103,6 +107,7 @@ class Detect:
         return point_stamped
 
     # Returns average colour of person. Takes forever.
+    # Make sure person is FACING tiago. Reduced PCL data makes this function less accurate
     def get_person_colour(self, mask_seg):
 
         pcl = rospy.wait_for_message('/xtion/depth_registered/points', PointCloud2)
@@ -124,6 +129,8 @@ class Detect:
         average_g = sum_g/count
         average_b = sum_b/count
 
+        print(average_r, average_g, average_b)
+
         colour_ranges = {
             'red': ((200, 0, 0), (255, 100, 100)),
             'green': ((0, 150, 0), (100, 255, 100)),
@@ -136,7 +143,7 @@ class Detect:
             'brown': ((100, 50, 0), (150, 100, 50)),
             'white': ((200, 200, 200), (255, 255, 255)),
             'black': ((0, 0, 0), (50, 50, 50)),
-            # Add more for better accuracy
+            # Add more colours for better accuracy
         }
 
         # Find the closest colour that matches calculated rgb values
@@ -180,10 +187,14 @@ class Detect:
         if self.counter % 10 == 0:
             # instantiate the service request
             request = YoloDetectionRequest()
-            request.image_raw = img  # sensor_msgs/Image
-            request.dataset = "yolov8n-seg.pt"  # YOLOv8 model, auto-downloads
-            request.confidence = 0.5  # minimum confidence to include in results
-            request.nms = 0.3  # coord_publisher(point.x, point.y)n maximal supression
+            # sensor_msgs/Image
+            request.image_raw = img
+            # YOLOv8 model, auto-downloads
+            request.dataset = "yolov8n-seg.pt"
+            # minimum confidence to include in results
+            request.confidence = 0.5
+            # coord_publisher(point.x, point.y)n maximal supression
+            request.nms = 0.3
 
             # send request
             response = self.detect_service(request)
@@ -198,9 +209,9 @@ class Detect:
                     self.mask = resp.xyseg
                     colour = self.get_person_colour(self.mask)
 
-                    rospy.loginfo(f"Found {resp.name}")
-                    print(f"Colour {colour}")
-                    point = self.get_person_pose(self.mask)  # calc where person is
+                    rospy.loginfo(f"Found {resp.name}, colour is {colour}")
+                    # calc where person is
+                    point = self.get_person_pose(self.mask)
                     # print(point)
                     final_point = self.make_point_accessible(point)
                     print(final_point)
@@ -209,12 +220,14 @@ class Detect:
 
                     # only send coords if we are following the same person
 
-                    if self.person_colour == '':
-                        self.person_colour == colour
+                    if not self.person_colour:
+                        self.person_colour = colour
+                        rospy.loginfo(f"Set person's colour to {self.person_colour}")
                         self.coord_publisher(x, y)
                     elif colour == self.person_colour:
                         self.coord_publisher(x, y)
                     else:
+                        rospy.loginfo("Not our person")
                         pass
 
 
