@@ -1,25 +1,31 @@
 #!/usr/bin/env python3
 import rospy
-from geometry_msgs.msg import Pose, Point
+import math
+from geometry_msgs.msg import Pose
 from tiago_controllers import BaseController
+from detect import Detect
 
-def callback(point):
+class Move:
 
-    # tiago cannot go to coord in cost map
-    dest = Pose()
+    def __init__(self):
+        self.b = BaseController()
+        self.d = Detect()
 
-    # we take our transformed x and ys, put them into a pose and send to base controller
-    dest.position.x = point.x
-    dest.position.y = point.y
-    dest.position.z = 0.0
-    # Assuming no rotation
-    dest.orientation.w = 1.0
+    def move_to_person(self, coords):
+        # tiago cannot go to coord in cost map
+        dest = Pose()
 
-    # b.sync_to_pose(dest)
+        # we take our transformed x and ys, put them into a pose and send to base controller
+        dest.position.x = coords[0]
+        dest.position.y = coords[1]
+        dest.position.z = 0.0
+        # Assuming no rotation
+        dest.orientation.w = 1.0
+        rospy.loginfo(f"Going to {coords[0]}, {coords[1]}")
+        # self.b.sync_to_pose(dest)
 
+    def recovery_scan(self):
 
-if __name__ == "__main__":
-    rospy.init_node("move")
-    coord_sub = rospy.Subscriber("coordinates", Point, callback)
-    b = BaseController()
-    rospy.spin()
+        rotation = math.pi / 4
+        rospy.loginfo("Searching")
+        self.b.rotate(rotation)

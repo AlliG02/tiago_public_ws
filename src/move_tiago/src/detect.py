@@ -17,12 +17,12 @@ class Detect:
     def __init__(self):
         self.counter = 0
         self.mask = []
-        self.found = False
         # create service proxy
         self.detect_service = rospy.ServiceProxy('/yolov8/detect', YoloDetection)
         self.tfb = tf2_ros.Buffer()
         self.tf_listener = tf2_ros.TransformListener(self.tfb)
         self.person_colour = None
+        self.found = False
 
     def get_tiago_pose(self):
 
@@ -35,6 +35,8 @@ class Detect:
         point_stamped.header.frame_id = "base_link"
         point_stamped.header.stamp = rospy.Time(0)
 
+        tiago_pose = PointStamped()
+
         try:
             tiago_pose = self.tfb.transform(point_stamped, "map")
             # rospy.loginfo(f"Tiago pose {tiago_pose}")
@@ -44,23 +46,23 @@ class Detect:
         return tiago_pose
 
 
-    def coord_publisher(self, x, y):
-
-        # Create a publisher with topic name 'coordinates' and message type 'Point'
-        pub = rospy.Publisher('coordinates', Point, queue_size=10)
-
-        rate = rospy.Rate(1)  # 1 Hz
-
-        point_msg = Point()
-
-        point_msg.x = x
-        point_msg.y = y
-
-        pub.publish(point_msg)
-
-        rospy.loginfo("Published coordinates: x = %.2f, y = %.2f", x, y)
-
-        rate.sleep()
+    # def coord_publisher(self, x, y):
+    #
+    #     # Create a publisher with topic name 'coordinates' and message type 'Point'
+    #     pub = rospy.Publisher('coordinates', Point, queue_size=10)
+    #
+    #     rate = rospy.Rate(1)  # 1 Hz
+    #
+    #     point_msg = Point()
+    #
+    #     point_msg.x = x
+    #     point_msg.y = y
+    #
+    #     pub.publish(point_msg)
+    #
+    #     rospy.loginfo("Published coordinates: x = %.2f, y = %.2f", x, y)
+    #
+    #     rate.sleep()
 
     # calculate the point of the person
     def get_person_pose(self, mask_seg):
@@ -129,7 +131,7 @@ class Detect:
         average_g = sum_g/count
         average_b = sum_b/count
 
-        print(average_r, average_g, average_b)
+        # print(average_r, average_g, average_b)
 
         colour_ranges = {
             'red': ((200, 0, 0), (255, 100, 100)),
@@ -184,7 +186,7 @@ class Detect:
         img = rospy.wait_for_message('/xtion/rgb/image_raw', Image)
         self.counter += 1
 
-        if self.counter % 10 == 0:
+        if self.counter % 5 == 0:
             # instantiate the service request
             request = YoloDetectionRequest()
             # sensor_msgs/Image
@@ -202,8 +204,6 @@ class Detect:
             if response.detected_objects:
                 rospy.loginfo("DETECTION")
 
-                self.found = True
-
                 for resp in response.detected_objects:
 
                     self.mask = resp.xyseg
@@ -218,22 +218,28 @@ class Detect:
                     x = final_point.x
                     y = final_point.y
 
-                    # only send coords if we are following the same person
-
+                    # initialise person colour
                     if not self.person_colour:
                         self.person_colour = colour
                         rospy.loginfo(f"Set person's colour to {self.person_colour}")
-                        self.coord_publisher(x, y)
+                        self.found = True
+                        return x, y
+                        # self.coord_publisher(x, y)
+                    # check if detected colour matches our stored colour
                     elif colour == self.person_colour:
-                        self.coord_publisher(x, y)
+                        # self.coord_publisher(x, y)
+                        self.found = True
+                        return x, y
                     else:
                         rospy.loginfo("Not our person")
-                        pass
-
+                        self.found = False
+                        return None
 
             else:
                 rospy.loginfo("NO DETECTION")
                 self.found = False
+                print("Lost person")
+                return None
 
     def is_tiago_within_range(self):
 

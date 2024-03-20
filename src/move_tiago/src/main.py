@@ -3,7 +3,10 @@ import rospy
 import smach
 import smach_ros
 
+import threading
+
 from detect import Detect
+from move import Move
 
 class Initial(smach.State):
     def __init__(self):
@@ -21,8 +24,17 @@ class Following(smach.State):
         rospy.loginfo('Executing following state')
         # All follow logic
 
-        d.detect()
-        # only progress if we detect something
+        if not d.found:
+            return 'lost_person'
+
+        coords = d.detect()
+        # print(f"These are the coords {coords}")
+
+        # should we follow or search?
+        if coords:
+            m.move_to_person(coords)
+
+        # should we go idle?
         if d.mask:
             if d.is_tiago_within_range():
                 print("In front of person")
@@ -31,12 +43,11 @@ class Following(smach.State):
             else:
                 # stay following
                 return 'not_reached_person'
+
         else:
             # stay following
             return 'not_reached_person'
 
-        # if not d.found:
-        #     return 'lost_person'
 
 class Idle(smach.State):
     def __init__(self):
@@ -58,13 +69,15 @@ class Searching(smach.State):
         smach.State.__init__(self, outcomes=['found_person', 'searching'])
 
     def execute(self, userdata):
-        if d.found:
-            return 'found_person'
-        else:
-            # perform search behaviour
-            return 'searching'
+        # perform search behaviour
+        for _ in range(5):
+            if d.detect():
+                return 'found_person'
 
-# Main function
+        m.recovery_scan()
+        return 'searching'
+
+# Start state machine
 def start_state_machine():
     # Create a SMACH state machine
     sm = smach.StateMachine(outcomes=['success', 'failure'])
@@ -92,5 +105,6 @@ if __name__ == '__main__':
 
     rospy.init_node('main_node')
     d = Detect()
+    m = Move()
     start_state_machine()
     rospy.spin()
