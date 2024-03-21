@@ -3,6 +3,8 @@ import struct
 import rospy
 import numpy as np
 import math
+
+from cv_bridge import CvBridge
 from sensor_msgs.msg import Image, PointCloud2
 from sensor_msgs import point_cloud2
 from lasr_vision_msgs.srv import YoloDetection, YoloDetectionRequest
@@ -23,6 +25,7 @@ class Detect:
         self.tf_listener = tf2_ros.TransformListener(self.tfb)
         self.person_colour = None
         self.found = False
+        self.bridge = CvBridge()
 
     def get_tiago_pose(self):
 
@@ -108,59 +111,135 @@ class Detect:
 
         return point_stamped
 
-    # Returns average colour of person. Takes forever.
-    # Make sure person is FACING tiago. Reduced PCL data makes this function less accurate
-    # TODO: fix this
-    def get_person_colour(self, mask_seg):
+    # alternative method filtered on the mask seg
+    def get_person_colour(self, xyseg):
+        img_msg = rospy.wait_for_message('/xtion/rgb/image_raw', Image)
+        # Convert ROS Image message to OpenCV image
+        img = self.bridge.imgmsg_to_cv2(img_msg, desired_encoding="passthrough")
 
-        pcl = rospy.wait_for_message('/xtion/depth_registered/points', PointCloud2)
+        # Initialize variables to accumulate RGB values and count of pixels
+        total_rgb = np.array([0, 0, 0])
+        unique_pixels = set()
 
-        sum_r = sum_g = sum_b = count = 0.0
-        # Calculate average rgb of all points in pcl
-        for point in point_cloud2.read_points(pcl, field_names=("x", "y", "z", "rgb"), skip_nans=True):
-        # Extract rgb values from each point
-            r, g, b = struct.unpack('I', struct.pack('f', point[3]))[0] >> 16 & 0xff, \
-                      struct.unpack('I', struct.pack('f', point[3]))[0] >> 8 & 0xff, \
-                      struct.unpack('I', struct.pack('f', point[3]))[0] & 0xff
+        # Iterate through pairs of coordinates (x, y) in the xyseg list
+        for i in range(0, len(xyseg), 2):
+            x = xyseg[i]
+            y = xyseg[i + 1]
 
-            sum_r += r
-            sum_g += g
-            sum_b += b
-            count += 1
+            # Ensure coordinates are within image bounds
+            if 0 <= x < img.shape[1] and 0 <= y < img.shape[0]:
+                # Add the pixel to the set of unique pixels
+                unique_pixels.add((x, y))
 
-        average_r = sum_r/count
-        average_g = sum_g/count
-        average_b = sum_b/count
+        # Iterate through unique pixels and accumulate RGB values
+        for x, y in unique_pixels:
+            rgb = img[y, x]
+            total_rgb += rgb
 
-        print(average_r, average_g, average_b)
+        # Calculate the average RGB values
+        pixel_count = len(unique_pixels)
+        if pixel_count > 0:
+            average_rgb = total_rgb / pixel_count
+        else:
+            average_rgb = np.array([0, 0, 0])  # Default value if no pixels are found
 
-        colour_ranges = {
-            'red': ((200, 0, 0), (255, 100, 100)),
-            'green': ((0, 150, 0), (100, 255, 100)),
-            'blue': ((0, 0, 150), (100, 100, 255)),
-            'yellow': ((200, 200, 0), (255, 255, 100)),
-            'orange': ((200, 100, 0), (255, 150, 100)),
-            'purple': ((100, 0, 100), (150, 50, 150)),
-            'pink': ((255, 100, 200), (255, 150, 255)),
-            'cyan': ((0, 200, 200), (100, 255, 255)),
-            'brown': ((100, 50, 0), (150, 100, 50)),
-            'white': ((200, 200, 200), (255, 255, 255)),
-            'black': ((0, 0, 0), (50, 50, 50)),
-            # Add more colours for better accuracy
+        r, g, b = average_rgb
+        average_rgb[0] = int(r)
+        average_rgb[1] = int(g)
+        average_rgb[2] = int(b)
+
+        print(average_rgb)
+
+        average_colour = self.get_closest_color(average_rgb)
+
+        return average_colour
+
+    def get_closest_color(self, rgb):
+        colors = {
+            'Black': (0, 0, 0),
+            'White': (255, 255, 255),
+            'Red': (255, 0, 0),
+            'Green': (0, 255, 0),
+            'Blue': (0, 0, 255),
+            'Yellow': (255, 255, 0),
+            'Cyan': (0, 255, 255),
+            'Magenta': (255, 0, 255),
+            'Orange': (255, 165, 0),
+            'Purple': (128, 0, 128),
+            'Brown': (165, 42, 42),
+            'Pink': (255, 192, 203),
+            'Gray': (128, 128, 128),
+            'LightGray': (211, 211, 211),
+            'DarkGray': (169, 169, 169)
+            # Add more colors as needed
         }
 
-        # Find the closest colour that matches calculated rgb values
-        closest_colour = None
-        min_distance = float('inf')
-        for colour, (lower_bound, upper_bound) in colour_ranges.items():
-            lower_distance = np.linalg.norm(np.array(lower_bound) - np.array([average_r, average_g, average_b]))
-            upper_distance = np.linalg.norm(np.array(upper_bound) - np.array([average_r, average_g, average_b]))
-            distance = min(lower_distance, upper_distance)
-            if distance < min_distance:
-                min_distance = distance
-                closest_colour = colour
+        min_dist = float('inf')
+        closest_color = None
 
-        return closest_colour
+        for color_name, color_rgb in colors.items():
+            dist = sum((a - b) ** 2 for a, b in zip(rgb, color_rgb))
+            if dist < min_dist:
+                min_dist = dist
+                closest_color = color_name
+
+        return closest_color
+
+
+    # # Returns average colour of person. Takes forever.
+    # # Make sure person is FACING tiago. Reduced PCL data makes this function less accurate
+    # # TODO: fix this
+    # def get_person_colour(self, mask_seg):
+    #
+    #     pcl = rospy.wait_for_message('/xtion/depth_registered/points', PointCloud2)
+    #     suggestion: use rgb data instead
+    #
+    #     sum_r = sum_g = sum_b = count = 0.0
+    #     # Calculate average rgb of all points in pcl
+    #     for point in point_cloud2.read_points(pcl, field_names=("x", "y", "z", "rgb"), skip_nans=True):
+    #     # Extract rgb values from each point
+    #         r, g, b = struct.unpack('I', struct.pack('f', point[3]))[0] >> 16 & 0xff, \
+    #                   struct.unpack('I', struct.pack('f', point[3]))[0] >> 8 & 0xff, \
+    #                   struct.unpack('I', struct.pack('f', point[3]))[0] & 0xff
+    #
+    #         sum_r += r
+    #         sum_g += g
+    #         sum_b += b
+    #         count += 1
+    #
+    #     average_r = sum_r/count
+    #     average_g = sum_g/count
+    #     average_b = sum_b/count
+    #
+    #     print(average_r, average_g, average_b)
+    #
+    #     colour_ranges = {
+    #         'red': ((200, 0, 0), (255, 100, 100)),
+    #         'green': ((0, 150, 0), (100, 255, 100)),
+    #         'blue': ((0, 0, 150), (100, 100, 255)),
+    #         'yellow': ((200, 200, 0), (255, 255, 100)),
+    #         'orange': ((200, 100, 0), (255, 150, 100)),
+    #         'purple': ((100, 0, 100), (150, 50, 150)),
+    #         'pink': ((255, 100, 200), (255, 150, 255)),
+    #         'cyan': ((0, 200, 200), (100, 255, 255)),
+    #         'brown': ((100, 50, 0), (150, 100, 50)),
+    #         'white': ((200, 200, 200), (255, 255, 255)),
+    #         'black': ((0, 0, 0), (50, 50, 50)),
+    #         # Add more colours for better accuracy
+    #     }
+    #
+    #     # Find the closest colour that matches calculated rgb values
+    #     closest_colour = None
+    #     min_distance = float('inf')
+    #     for colour, (lower_bound, upper_bound) in colour_ranges.items():
+    #         lower_distance = np.linalg.norm(np.array(lower_bound) - np.array([average_r, average_g, average_b]))
+    #         upper_distance = np.linalg.norm(np.array(upper_bound) - np.array([average_r, average_g, average_b]))
+    #         distance = min(lower_distance, upper_distance)
+    #         if distance < min_distance:
+    #             min_distance = distance
+    #             closest_colour = colour
+    #
+    #     return closest_colour
 
     # move the person point out of the obstruction zone
     def make_point_accessible(self, person):
