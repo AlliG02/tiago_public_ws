@@ -22,7 +22,7 @@ class Move:
         # Assuming no rotation
         dest.orientation.w = 1.0
         rospy.loginfo(f"Going to {coords[0]}, {coords[1]}")
-        # self.b.sync_to_pose(dest)
+        self.b.sync_to_pose(dest)
 
     def recovery_scan(self):
 
