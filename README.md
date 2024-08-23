@@ -15,3 +15,7 @@ This project makes use of:
 ## Video Presentation
 
 A video presentation of this project can be found [here](https://www.youtube.com/watch?v=UH8xKoYOvhk).
+
+## Project Report
+
+A detailed report on the entire project, including the design and specification of the project, can be found [here](./Report_Final.pdf).
