@@ -1,10 +1,10 @@
-<h1>Person-Following Robot</h1> 
+# Final Year Project: Person-Following Robot
 
-This repository contains my final year project at King's College London. A person-following robot capable of:
+This repository contains my final year project at King's College London: a person-following robot with the following capabilities:
 
-- person following.
-- person lock. Stays focused on person being followed when other people enter the field of view.
-- search behaviour when person leaves the field of view.
+- **Person following:** The robot follows a specific person.
+- **Person lock:** The robot remains focused on the person being followed, even when other people enter its field of view.
+- **Search behavior:** The robot initiates a search when the person leaves its field of view.
 
 This project makes use of:
 
