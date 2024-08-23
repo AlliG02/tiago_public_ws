@@ -1,12 +1,15 @@
-<h1>Person-follower using the Tiago robot</h1> 
+<h1>Person-Following Robot</h1> 
 
-Uses:
-- Yolov8 for human recognition
-- MoveBase for robot path planning
+This repository contains my final year project at King's College London. A person-following robot capable of:
 
-Features:
-- person following
+- person following.
 - person lock. Stays focused on person being followed when other people enter the field of view.
-- search behaviour when person leaves the field of view
+- search behaviour when person leaves the field of view.
 
-Built using ROS noetic.
+This project makes use of:
+
+- TIAGo as the robot 
+- Yolov8 for human recognition.
+- MoveBase for robot path planning.
+
+A video presentation of this project can be found using this link https://www.youtube.com/watch?v=UH8xKoYOvhk
