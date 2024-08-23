@@ -20,4 +20,4 @@ A video presentation of this project can be found [here](https://www.youtube.com
 
 ## Project Report
 
-A detailed report on the entire project, including the design and specification of the project, can be found [here](./Report_Final.pdf).
+A detailed report on the entire project, including the design and specification of the project, can be found [here](./Report_final.pdf).
