@@ -1,5 +1,7 @@
 # Final Year Project: Person-Following Robot
 
+## Overview
+
 This repository contains my final year project at King's College London: a person-following robot with the following capabilities:
 
 - **Person following:** The robot follows a specific person.
